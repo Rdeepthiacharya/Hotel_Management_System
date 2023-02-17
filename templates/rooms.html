@@ -1,0 +1,189 @@
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="keywords" content="footer, address, phone, icons" />
+  <title>Rooms</title>
+  <link rel="stylesheet" href="/static/css/style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
+  <link href="http://fonts.googleapis.com/css?family=Cookie" rel="stylesheet" type="text/css">
+  <style>
+    body {
+      background-image: url(/static/image/bg1.webp);
+    }
+
+    .groups li {
+      background-image: url(/static/image/bdfact1.jpg);
+    }
+
+    .button2 {
+      position: absolute;
+      bottom: 20px;
+      left: 25px;
+      background: palevioletred;
+      color: #fff;
+      line-height: 2.2;
+      padding: 0 20px;
+      border-radius: 50px;
+      text-decoration: none;
+      box-shadow: 0 1px 6px 0 #0004;
+      transition: all 0.3s;
+    }
+
+    .button2:hover {
+      box-shadow: 0 3px 8px 0 #0005;
+      background: gray;
+      left: 15px;
+    }
+  </style>
+</head>
+<header>
+  <div class="navbar">
+    <img src="/static/image/logol.jpg" class="logo1">
+    <div class="mobile">
+      <ul>
+        <li><a href="/reservations"></a></li>
+        <li><a href="/">Home</a></li>
+        <li><a href="/rooms">Rooms</a></li>
+        <li><a href="/facilities">Facilities</a></li>
+        <li><a href="/gallery">Gallery</a></li>
+        <li><a href="/login">Login</a></li>
+        <li><a href="/signup"> Signup</a></li>
+      </ul>
+    </div>
+  </div>
+</header>
+  <body>
+    <h1>ROOMS</h1>
+    <div style="min-height:4vh; display:flex; flex-direction:column; 
+    justify-content:space-between;">
+    </div>
+    <div class="room1">
+      <p>The guest rooms at hotel Elite, Bengaluru, have been thoughtfully designed to exceed your expectations on
+          comfort as well as providing all you need to succeed at your work. This 5-star hotel in Bengaluru
+          introduces a paradisiacal stay to all the guests. Standing as an epitome of elegance and charm, the
+          hotel unifies class and comfort.</p>
+  </div>
+  <div style="min-height:4vh; display:flex; flex-direction:column; 
+justify-content:space-between;">
+  </div>
+    <div class="card">
+      <ul class="groups">
+        {% for room in rdetails %}
+        <li>
+          <div class="image-session">
+            <span class="image"><img src="{{room.image}}" alt="" height="150" /></span>
+          </div>
+
+          <div class="head">
+            <div>
+              <h5 class="b"> {{room.name}} </h5>
+              <p> {{room.desc}}</p>
+              <p class="a">Price: {{room.price}}</p>
+              <a href="/login" class="button2">Book Now&nbsp;&nbsp;<i class="fa-solid fa-ticket"></i></a>
+            </div>
+          </div>
+        </li>
+        {% endfor %}
+      </ul>
+    </div>
+    <div style="min-height:7vh; display:flex; flex-direction:column; 
+            justify-content:space-between;">
+    </div>
+    <div class="div1"></div>
+    <div class="div">
+      <div class="kilimanjaro_part">
+        <h5>Other facilities</h5>
+        <ul class=" kilimanjaro_widget">
+          <li><a href="#"><i class="fa-solid fa-square-check"></i>&nbsp;&nbsp;Spacious Hygienic Room</a></li>
+          <li><a href="#"><i class="fa-solid fa-square-check"></i>&nbsp;&nbsp;Disable Access</a></li>
+          <li><a href="#"><i class="fa-solid fa-square-check"></i>&nbsp;&nbsp;24-hour high speed internet</a> </li>
+          <li><a href="#"><i class="fa-solid fa-square-check"></i>&nbsp;&nbsp;Restaurant</a></li>
+          <li><a href="#"><i class="fa-solid fa-square-check"></i>&nbsp;&nbsp;Pets Allowed</a></li>
+          <li><a href="#"><i class="fa-solid fa-square-check"></i>&nbsp;&nbsp;Room service</a></li>
+          <li><a href="#"><i class="fa-solid fa-square-check"></i>&nbsp;&nbsp;Safety & Security</a></li>
+          <li><a href="#"><i class="fa-solid fa-square-check"></i>&nbsp;&nbsp;43” HD smart TV</a></li>
+          <li><a href="#"><i class="fa-solid fa-square-check"></i>&nbsp;&nbsp;Laundry services on a chargeable basis</a>
+          </li>
+          <li><a href="#"><i class="fa-solid fa-square-check"></i>&nbsp;&nbsp;Air Dryer</a></li>
+          <li><a href="#"><i class="fa-solid fa-square-check"></i>&nbsp;&nbsp;Air Condition</a></li>
+          <li><a href="#"><i class="fa-solid fa-square-check"></i>&nbsp;&nbsp;Iron and Ironing Board On Request</a></li>
+          <li><a href="#"><i class="fa-solid fa-square-check"></i>&nbsp;&nbsp;24 Hour Coffee Shop</a></li>
+          <li><a href="#"><i class="fa-solid fa-square-check"></i>&nbsp;&nbsp;Baby Cot On Request</a></li>
+          <li><a href="#"><i class="fa-solid fa-square-check"></i>&nbsp;&nbsp;Writing Table</a></li>
+          <li><a href="#"><i class="fa-solid fa-square-check"></i>&nbsp;&nbsp;24 Hour Coffee Shop</a></li>
+          <li><a href="#"><i class="fa-solid fa-square-check"></i>&nbsp;&nbsp;Bathtub/Shower Cubical</a></li>
+          <li><a href="#"><i class="fa-solid fa-square-check"></i>&nbsp;&nbsp;Sound-proof windows</a></li>
+          <li><a href="#"><i class="fa-solid fa-square-check"></i>&nbsp;&nbsp;Tea-Coffee Maker</a></li>
+
+        </ul>
+      </div>
+      <div style="min-height:20vh; display:flex; flex-direction:column; 
+      justify-content:space-between;">
+
+      <h5>Additional Hotel Information</h5>
+      <div style="min-height:4vh; display:flex; flex-direction:column; 
+            justify-content:space-between;">
+      </div>
+      <p class="a">Checking In:</p>
+      <p>
+        Extra-person charges may apply and vary depending on hotel policy.
+        Guests must show current government-issued proof of identity at the time of check-in.
+        Photo identification and credit card or cash deposit are required at check-in for incidental charges.
+        Special requests are subject to availability upon check-in and may incur additional charges. Special requests
+        cannot be guaranteed.
+      </p>
+      <!-- <p class="a">Cancellation Policy:</p>
+      <p> We understand that sometimes plans fall through. We do not charge a change or cancel fee. </p> -->
+
+      <footer class="footer-distributed">
+
+        <div class="footer-left">
+          <img src="/static/image/logol.jpg">
+          <h3>Hotel Elite</h3>
+          <h6 class="tagline">Where elegance meets comfort</h6>
+        </div>
+        <div class="footer-center">
+          <div class="icons">
+            <a href="#" class="icon1 icon--map"><i class="fa fa-map-marker"></i></a>
+            <p><span>Hotel Elite |
+                14 9th Main, 13th Cross Rd, Sector 6, HSR Layout</span>
+              Bengaluru, Karnataka 560102</p>
+          </div>
+          <div class="icons">
+            <a href="#" class="icon1 icon--phone"><i class="fa fa-phone"></i></a>
+            <p>500-123-4256</p>
+          </div>
+          <div class="icons">
+            <a href="#" class="icon1 icon--envelope"><i class="fa fa-envelope"></i></a>
+            <p><a href="mailto:hotelelite04@gmail.com">mail to:hotelelite04@gmail.com</a></p>
+          </div>
+        </div>
+
+        <div class="line__separete"></div>
+        <div class="by flex">
+          <p>&copy;2022 The Indian Hotels Company Limited | All Rights Reserved.</p>
+          <div class="icons">
+            <a href="#" class="icon1 icon--instagram">
+              <i class="fa-brands fa-instagram"></i>
+            </a>
+            <a href="#" class="icon1 icon--twitter">
+              <i class="fa-brands fa-twitter"></i>
+            </a>
+            <a href="#" class="icon1 icon--google">
+              <i class="fa-brands fa-google"></i>
+            </a>
+            <a href="#" class="icon1 icon--facebook">
+              <i class="fa-brands fa-facebook"></i>
+            </a>
+          </div>
+        </div>
+      </footer>
+
+
+
+  </body>
+
+</html>

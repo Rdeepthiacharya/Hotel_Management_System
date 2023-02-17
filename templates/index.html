@@ -1,0 +1,179 @@
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="keywords" content="footer, address, phone, icons" />
+  <title>Hotel management </title>
+  <link rel="stylesheet" href="/static/css/style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
+  <link href="http://fonts.googleapis.com/css?family=Cookie" rel="stylesheet" type="text/css">
+  <style>
+    body {
+      background-image: url(/static/image/bg1.webp);
+    }
+
+    .button2 {
+      position: absolute;
+      bottom: 20px;
+      left: 25px;
+      background: palevioletred;
+      color: #fff;
+      line-height: 2.2;
+      padding: 0 20px;
+      border-radius: 50px;
+      text-decoration: none;
+      box-shadow: 0 1px 6px 0 #0004;
+      transition: all 0.3s;
+    }
+
+    .button2:hover {
+      box-shadow: 0 3px 8px 0 #0005;
+      background: gray;
+      left: 15px;
+    }
+  </style>
+
+</head>
+<header>
+  <div class="navbar">
+    <img src="/static/image/logol.jpg" class="logo1">
+    <div class="mobile">
+      <ul>
+        <li><a href="/admin/bookingview"></a></li>
+        <li><a href="/reservations"></a></li>
+        <li><a href="/">Home</a></li>
+        <li><a href="/rooms">Rooms</a></li>
+        <li><a href="/facilities">Facilities</a></li>
+        <li><a href="/gallery">Gallery</a></li>
+        <li><a href="/login">Login</a></li>
+        <li><a href="/signup"> Signup</a></li>
+      </ul>
+    </div>
+  </div>
+
+</header>
+
+<body>
+
+  <h1 class="logo"> Hotel Elite</h1>
+  <h6 class="tagline1">Where elegance meets comfort</h6>
+  <div class="slider">
+
+    <div>
+
+      <figure>
+        <img src="/static/image/bg2.jpeg">
+        <img src="/static/image/imgs1.jpeg">
+        <img src="/static/image/imgs3.jpeg">
+        <img src="/static/image/imgs4.jpg">
+        <img src="/static/image/imgs5.webp">
+      </figure>
+
+    </div>
+  </div>
+
+  <a href="/login" class="button2">Book Now&nbsp;&nbsp;<i class="fa-solid fa-ticket"></i> </a>
+  <div>
+    <div class="about">
+      <h1 class="font"> Welcome to Hotel Elite</h1>
+      <h6 class="tagline1">Where elegance meets comfort</h6>
+      <div style="min-height:4vh; display:flex; flex-direction:column; 
+        justify-content:space-between;">
+      </div>
+      <p>Enter a world of unmatchable hospitality provided with an imperial touch. Quintessentially Indian, ELITE has
+        been a preferred destination for esteemed personalities across the world.ELITE provides guests with memorable
+        experiences in its luxury hotels, spa. Upholders of indigenous arts and crafts, local culture, and
+        communities,Elite’s commitment towards the preservation of heritage is evident across its properties. Witness
+        it in the art-inspired decor, or feel it in the forgotten Ayurvedic therapies at the Aloka Spa. Savor it in
+        the many award-winning restaurants serving both international and local cuisines, or simply live it in other
+        unforgettable moments. At our Hotel Elite, each experience is noticeably unique, at every property.
+      </p>
+    </div>
+  </div>
+
+  <section id="contact">
+    <div class="contact-box">
+      <div class="c-heading">
+        <h1>Get In Touch</h1>
+        <p>Email Us Regarding Question Or Issues</p>
+      </div>
+      <div class="c-inputs">
+
+        <form action="https://formspree.io/f/mvonkwdw" method="POST">
+          <input type="text" name="name" id="name" class="form-control-exp input_required " placeholder="Full name"
+            required>
+          <input type="email" name="email" id="email" class="form-control-exp input_required " placeholder="Your email"
+            required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$">
+          <textarea name="purpose" id="purpose" class="form-control-exp input_required "
+            placeholder="How can we help you ?" required></textarea>
+          <button id="button" onclick="sendmail()" type="submit" class="submit">Send&nbsp;&nbsp;<i
+              class="fa-solid fa-paper-plane"></i></button>
+        
+      </div>
+    </div>
+    <div class="map">
+      <p><span><iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3888.8737737124143!2d77.63228711442895!3d12.915833419595055!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bae148c537382c3%3A0xe0ef2e0c58cd28d7!2s14th%20Cross%20Rd%2C%20Sector%206%2C%20HSR%20Layout%2C%20Bengaluru%2C%20Karnataka%20560102!5e0!3m2!1sen!2sin!4v1673016517181!5m2!1sen!2sin"
+            width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"></iframe></span>
+    </div>
+  </section>
+
+
+
+
+  <div style="min-height:10vh; display:flex; flex-direction:column; 
+    justify-content:space-between;">
+  </div>
+
+  <footer class="footer-distributed">
+    <div class="footer-left">
+      <img src="/static/image/logol.jpg">
+
+      <h3>Hotel Elite</h3>
+      <h6 class="tagline">Where elegance meets comfort</h6>
+    </div>
+
+    <div class="footer-center">
+      <div class="icons">
+        <a href="#" class="icon1 icon--map"><i class="fa fa-map-marker"></i></a>
+        <p><span>Hotel Elite |
+            14 9th Main, 13th Cross Rd, Sector 6, HSR Layout</span>
+          Bengaluru, Karnataka 560102</p>
+      </div>
+      <div class="icons">
+        <a href="#" class="icon1 icon--phone"><i class="fa fa-phone"></i></a>
+        <p>500-123-4256</p>
+      </div>
+      <div class="icons">
+        <a href="#" class="icon1 icon--envelope"><i class="fa fa-envelope"></i></a>
+        <p><a class="a1" href="mailto:hotelelite04@gmail.com">mail to:hotelelite04@gmail.com</a></p>
+      </div>
+    </div>
+
+    <div class="line__separete"></div>
+    <div class="by flex">
+      <p>&copy;2022 The Indian Hotels Company Limited | All Rights Reserved.</p>
+      <div class="icons">
+        <a href="#" class="icon1 icon--instagram">
+          <i class="fa-brands fa-instagram"></i>
+        </a>
+        <a href="#" class="icon1 icon--twitter">
+          <i class="fa-brands fa-twitter"></i>
+        </a>
+        <a href="#" class="icon1 icon--google">
+          <i class="fa-brands fa-google"></i>
+        </a>
+        <a href="#" class="icon1 icon--facebook">
+          <i class="fa-brands fa-facebook"></i>
+        </a>
+      </div>
+    </div>
+  </footer>
+
+</body>
+
+
+</html>

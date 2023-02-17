@@ -1,0 +1,145 @@
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
+    <title>Reservtion Form</title>
+    <style>
+        html {
+            height: 100%;
+            font-size: 20px;
+        }
+
+        body {
+            background-image: url(/static/image/rev.jpeg);
+            background-size: cover;
+        }
+
+        h1 {
+            margin: 0;
+            padding: 28px;
+            font-size: 35px;
+            border-bottom: 1px solid #eceff2;
+            color: #6a737f;
+            font-weight: 600;
+            background-color: #f9fbfc;
+            text-align: justify;
+        }
+
+        .field {
+            padding-bottom: 8px;
+            padding-left: 40px;
+        }
+
+        button {
+            position: relative;
+            bottom: 20px;
+            background: palevioletred;
+            color: #fff;
+            line-height: 2.2;
+            padding: 0 20px;
+            border-radius: 50px;
+            text-decoration: none;
+            box-shadow: 0 1px 6px 0 #0004;
+            transition: all 0.3s;
+        }
+
+        button:hover {
+            box-shadow: 0 3px 8px 0 #0005;
+            background: gray;
+        }
+
+        input {
+            background: #ecf0f3;
+            padding: 10px;
+            padding-left: 20px;
+            height: 35px;
+            font-size: 14px;
+            border-radius: 50px;
+            box-shadow: inset 6px 6px 6px transparent, inset -6px -6px 6px transparent;
+        }
+
+        .field1 {
+            padding-bottom: 8px;
+            padding-left: 40px;
+        }
+
+        .field1 input {
+            width: 20px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <form class="hotel-reservation-form" method="post" action="/reservations">
+        <h1>&nbsp;&nbsp;<i class="fa-sharp fa-solid fa-hotel"></i>&nbsp;&nbsp;Hotel Elite’s Reservation Form</h1>
+        <br>
+        <div class="field">
+            <label> Name:</label>
+            &nbsp;&nbsp;<input id="name" type="text" name="name" placeholder="Your Name" ><br><br>
+        </div>
+        <div class="field">
+            <label>Email:</label>
+            &nbsp;&nbsp;<input id="email" type="email" name="email" placeholder="Your Email" required
+                pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"><br><br>
+        </div>
+        <div class="field">
+            <label>Mobile no:</label>
+            &nbsp;&nbsp;<input type="tel" name="telphone" maxlength="10" 
+                placeholder="Mobile number" required ><br><br>
+        </div>
+        <div class="field">
+            <label>Address:</label>
+            &nbsp;&nbsp;<textarea id="address" name="address" 
+                required></textarea><br><br>
+        </div>
+        <div class="field">
+            <label>Room Type:</label>
+            &nbsp;&nbsp;<select name="Room_type">
+                <option value="Superior Room">Superior Room</option>
+                <option value="Deluxe Room">Deluxe Room</option>
+                <option value="Club Room">Club Room</option>
+                <option value="Suites">Suites</option>
+            </select><br><br>
+        </div>
+        <div class="field">
+            <label>Number of rooms:</label>
+            &nbsp;&nbsp;<input name="number_of_rooms"
+            type="number" min="0" max="50" placeholder="input"><br>
+        </div>
+        <div class="field1">
+            <label>Select other facilities:</label>
+            &nbsp;&nbsp;Unique Dining<input name="other_facilities" type="checkbox">
+            &nbsp;&nbsp;Private theater<input name="other_facilities" type="checkbox">
+            &nbsp;&nbsp;Event Spaces<input name="other_facilities" type="checkbox">
+            &nbsp;&nbsp;Aloka Spa<input name="other_facilities" type="checkbox">
+            &nbsp;&nbsp;Swimming pool<input name="other_facilities" type="checkbox">
+            &nbsp;&nbsp;Cab<input name="other_facilities" type="checkbox"><br><br>
+        </div>
+        <div class="field">
+            <label >Arrival Date:</label>
+            &nbsp;&nbsp;<input name="arrival_data" type="date" placeholder="dd/mm/YYYY" required><br><br>
+        </div>
+        <div class="field">
+            <label>Departure Date:</label>
+            &nbsp;&nbsp;<input name="departure_date" type="date" placeholder="dd/mm/YYYY" required><br><br>
+        </div>
+        <div class="field">
+            <h4>{{msg}}</h4>
+            <button type="submit" value="submit">BOOK NOW&nbsp;&nbsp;<i
+                    class="fa-solid fa-ticket"></i></button>&nbsp;&nbsp;&nbsp;&nbsp;
+            <button type="reset" value="reset">Clear&nbsp;&nbsp;<i class="fa-solid fa-trash-arrow-up"></i></button>
+            
+        </div>
+    </form>
+
+
+
+
+
+</body>
+
+</html>
