@@ -1,17 +1,15 @@
 <html>
-
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="keywords" content="footer, address, phone, icons" />
   <title>Hotel management </title>
   <link rel="stylesheet" href="/static/css/style.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
-  <link href="http://fonts.googleapis.com/css?family=Cookie" rel="stylesheet" type="text/css">
   <style>
     body {
-      background-image: url(/static/image/bg1.webp);
+      background-image: url(/static/image/bg1.webp) !important;
+      background-size: cover;
     }
 
     .button2 {
@@ -34,35 +32,16 @@
       left: 15px;
     }
   </style>
-
 </head>
-<header>
-  <div class="navbar">
-    <img src="/static/image/logol.jpg" class="logo1">
-    <div class="mobile">
-      <ul>
-        <li><a href="/admin/bookingview"></a></li>
-        <li><a href="/reservations"></a></li>
-        <li><a href="/">Home</a></li>
-        <li><a href="/rooms">Rooms</a></li>
-        <li><a href="/facilities">Facilities</a></li>
-        <li><a href="/gallery">Gallery</a></li>
-        <li><a href="/login">Login</a></li>
-        <li><a href="/signup"> Signup</a></li>
-      </ul>
-    </div>
-  </div>
-
-</header>
 
 <body>
+<header>
+  <include src="/mainheader"></include>
+</header>
 
   <h1 class="logo"> Hotel Elite</h1>
-  <h6 class="tagline1">Where elegance meets comfort</h6>
+  <h6 class="tagline1">Where elegance meets comfort</h6><br>
   <div class="slider">
-
-    <div>
-
       <figure>
         <img src="/static/image/bg2.jpeg">
         <img src="/static/image/imgs1.jpeg">
@@ -70,18 +49,12 @@
         <img src="/static/image/imgs4.jpg">
         <img src="/static/image/imgs5.webp">
       </figure>
-
-    </div>
   </div>
 
   <a href="/login" class="button2">Book Now&nbsp;&nbsp;<i class="fa-solid fa-ticket"></i> </a>
-  <div>
-    <div class="about">
+    <div class="room1">
       <h1 class="font"> Welcome to Hotel Elite</h1>
-      <h6 class="tagline1">Where elegance meets comfort</h6>
-      <div style="min-height:4vh; display:flex; flex-direction:column; 
-        justify-content:space-between;">
-      </div>
+      <h6 class="tagline1">Where elegance meets comfort</h6><br>
       <p>Enter a world of unmatchable hospitality provided with an imperial touch. Quintessentially Indian, ELITE has
         been a preferred destination for esteemed personalities across the world.ELITE provides guests with memorable
         experiences in its luxury hotels, spa. Upholders of indigenous arts and crafts, local culture, and
@@ -91,7 +64,6 @@
         unforgettable moments. At our Hotel Elite, each experience is noticeably unique, at every property.
       </p>
     </div>
-  </div>
 
   <section id="contact">
     <div class="contact-box">
@@ -100,7 +72,6 @@
         <p>Email Us Regarding Question Or Issues</p>
       </div>
       <div class="c-inputs">
-
         <form action="https://formspree.io/f/mvonkwdw" method="POST">
           <input type="text" name="name" id="name" class="form-control-exp input_required " placeholder="Full name"
             required>
@@ -110,8 +81,7 @@
             placeholder="How can we help you ?" required></textarea>
           <button id="button" onclick="sendmail()" type="submit" class="submit">Send&nbsp;&nbsp;<i
               class="fa-solid fa-paper-plane"></i></button>
-        
-      </div>
+         </div>
     </div>
     <div class="map">
       <p><span><iframe
@@ -121,59 +91,9 @@
     </div>
   </section>
 
-
-
-
-  <div style="min-height:10vh; display:flex; flex-direction:column; 
-    justify-content:space-between;">
-  </div>
-
-  <footer class="footer-distributed">
-    <div class="footer-left">
-      <img src="/static/image/logol.jpg">
-
-      <h3>Hotel Elite</h3>
-      <h6 class="tagline">Where elegance meets comfort</h6>
-    </div>
-
-    <div class="footer-center">
-      <div class="icons">
-        <a href="#" class="icon1 icon--map"><i class="fa fa-map-marker"></i></a>
-        <p><span>Hotel Elite |
-            14 9th Main, 13th Cross Rd, Sector 6, HSR Layout</span>
-          Bengaluru, Karnataka 560102</p>
-      </div>
-      <div class="icons">
-        <a href="#" class="icon1 icon--phone"><i class="fa fa-phone"></i></a>
-        <p>500-123-4256</p>
-      </div>
-      <div class="icons">
-        <a href="#" class="icon1 icon--envelope"><i class="fa fa-envelope"></i></a>
-        <p><a class="a1" href="mailto:hotelelite04@gmail.com">mail to:hotelelite04@gmail.com</a></p>
-      </div>
-    </div>
-
-    <div class="line__separete"></div>
-    <div class="by flex">
-      <p>&copy;2022 The Indian Hotels Company Limited | All Rights Reserved.</p>
-      <div class="icons">
-        <a href="#" class="icon1 icon--instagram">
-          <i class="fa-brands fa-instagram"></i>
-        </a>
-        <a href="#" class="icon1 icon--twitter">
-          <i class="fa-brands fa-twitter"></i>
-        </a>
-        <a href="#" class="icon1 icon--google">
-          <i class="fa-brands fa-google"></i>
-        </a>
-        <a href="#" class="icon1 icon--facebook">
-          <i class="fa-brands fa-facebook"></i>
-        </a>
-      </div>
-    </div>
-  </footer>
-
+    <footer class="footer-distributed">
+      <include src="/footer"></include>
+    </footer>
+    <script type="text/javascript" src="/static/js/script.js"></script>
 </body>
-
-
 </html>

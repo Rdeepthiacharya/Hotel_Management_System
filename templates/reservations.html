@@ -1,21 +1,30 @@
 <html>
-
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
     <title>Reservtion Form</title>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js"></script>
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/themes/base/jquery-ui.css">
     <style>
-        html {
-            height: 100%;
-            font-size: 20px;
-        }
+        * {
+          margin: 0;
+          padding: 0;
+          font-family: Tahoma, Geneva, sans-serif;
+          box-sizing: border-box;
+          }
 
         body {
-            background-image: url(/static/image/rev.jpeg);
+            background-image: url(/static/image/rev.jpeg) !important;
             background-size: cover;
         }
+
+        a{
+             text-decoration: none;
+             color: #fff;
+         }
 
         h1 {
             margin: 0;
@@ -69,32 +78,28 @@
         .field1 input {
             width: 20px;
         }
-    </style>
+    </style>  
 </head>
 
 <body>
-
     <form class="hotel-reservation-form" method="post" action="/reservations">
         <h1>&nbsp;&nbsp;<i class="fa-sharp fa-solid fa-hotel"></i>&nbsp;&nbsp;Hotel Elite’s Reservation Form</h1>
         <br>
         <div class="field">
             <label> Name:</label>
-            &nbsp;&nbsp;<input id="name" type="text" name="name" placeholder="Your Name" ><br><br>
+            &nbsp;&nbsp;<input id="name" type="text" name="name" placeholder="Your Name" required><br><br>
         </div>
         <div class="field">
             <label>Email:</label>
-            &nbsp;&nbsp;<input id="email" type="email" name="email" placeholder="Your Email" required
-                pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"><br><br>
+            &nbsp;&nbsp;<input id="email" type="email" name="email" placeholder="Your Email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" required><br><br>
         </div>
         <div class="field">
             <label>Mobile no:</label>
-            &nbsp;&nbsp;<input type="tel" name="telphone" maxlength="10" 
-                placeholder="Mobile number" required ><br><br>
+            &nbsp;&nbsp;<input type="tel" name="telphone" maxlength="10" placeholder="Mobile number" required ><br><br>
         </div>
         <div class="field">
             <label>Address:</label>
-            &nbsp;&nbsp;<textarea id="address" name="address" 
-                required></textarea><br><br>
+            &nbsp;&nbsp;<textarea id="address" name="address" required></textarea><br><br>
         </div>
         <div class="field">
             <label>Room Type:</label>
@@ -107,8 +112,7 @@
         </div>
         <div class="field">
             <label>Number of rooms:</label>
-            &nbsp;&nbsp;<input name="number_of_rooms"
-            type="number" min="0" max="50" placeholder="input"><br>
+            &nbsp;&nbsp;<input name="number_of_rooms" type="number" min="0" max="50" placeholder="input" required><br>
         </div>
         <div class="field1">
             <label>Select other facilities:</label>
@@ -120,26 +124,18 @@
             &nbsp;&nbsp;Cab<input name="other_facilities" type="checkbox"><br><br>
         </div>
         <div class="field">
-            <label >Arrival Date:</label>
-            &nbsp;&nbsp;<input name="arrival_data" type="date" placeholder="dd/mm/YYYY" required><br><br>
+        <label for="from">Arrival Date</label> 
+        <input type="text" id="arrival_date" name="arrival_date" placeholder="mm/dd/YYYY" required/>&nbsp;&nbsp;&nbsp;&nbsp;
+        <label for="to">Departure Date</label> 
+        <input type="text" id="departure_date" name="departure_date" placeholder="mm/dd/YYYY" required/>
+        </div><br><br>
+        <div class="field">      
+            <button type="submit" value="submit">BOOK NOW&nbsp;&nbsp;<i class="fa-solid fa-ticket"></i></button>&nbsp;&nbsp;&nbsp;&nbsp;
+            <button type="reset" value="reset">Clear&nbsp;&nbsp;<i class="fa-solid fa-trash-arrow-up"></i></button> 
+            <h4>{{msg}}</h4>        
         </div>
-        <div class="field">
-            <label>Departure Date:</label>
-            &nbsp;&nbsp;<input name="departure_date" type="date" placeholder="dd/mm/YYYY" required><br><br>
-        </div>
-        <div class="field">
-            <h4>{{msg}}</h4>
-            <button type="submit" value="submit">BOOK NOW&nbsp;&nbsp;<i
-                    class="fa-solid fa-ticket"></i></button>&nbsp;&nbsp;&nbsp;&nbsp;
-            <button type="reset" value="reset">Clear&nbsp;&nbsp;<i class="fa-solid fa-trash-arrow-up"></i></button>
-            
-        </div>
-    </form>
-
-
-
-
-
+    </form><br>
+    <button style="left: 100px; " class="button1"><a href="/">Logout &nbsp;&nbsp;<i class="fa-solid fa-right-from-bracket"></i></a></button> 
+    <script type="text/javascript" src="/static/js/script.js"></script> 
 </body>
-
 </html>

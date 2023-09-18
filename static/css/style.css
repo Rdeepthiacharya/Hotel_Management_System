@@ -1,37 +1,20 @@
-/* home */
 @import url('http://fonts.googleapis.com/css?family=Open+Sans:400,700');
-@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800;900&display=swap");
-
 
 * {
   margin: 0;
   padding: 0;
-  font-family: "Poppins", sans-serif;
+  font-family: Tahoma, Geneva, sans-serif;
   box-sizing: border-box;
 }
 
 body {
   margin: 0;
   padding: 0;
-  background-image: url(/static/image/bg1.webp);
-  -webkit-background-size: cover;
-  background-size: cover;
-  background-position: center center;
   height: max-content;
   width: auto;
-  font-family: poppins;
   scroll-behavior: smooth;
   overflow-x: hidden;
   overflow-y: scroll;
-}
-
-.navbar {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-background-image: radial-gradient(circle at 30%,  #7e959b 25%, #cfc0c0 35%,  #12e1e5 85% );
-  margin-bottom: 15px;
-
 }
 
 .logo1 {
@@ -39,38 +22,70 @@ background-image: radial-gradient(circle at 30%,  #7e959b 25%, #cfc0c0 35%,  #12
   cursor: pointer;
 }
 
-.navbar ul {
-  display: inline-flex;
-  list-style: none;
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-image: radial-gradient(circle at 30%,  #7e959b 25%, #cfc0c0 35%, #12e1e5 85% );
+  margin-bottom: 15px;
 }
 
-.navbar ul li {
-  list-style: none;
+.navbar .nav {
+  display: inline-flex;
+}
+
+.navbar .nav .bar {
   display: inline-block;
   padding: 10px 25px;
   position: relative;
 }
 
-.navbar ul li a:hover {
+.navbar .nav .bar a:hover, .dropdown .bar:hover {
   color: palevioletred;
   text-align: center;
   transition: .3s;
 }
 
-.navbar ul li a {
+.navbar .nav .bar a {
   text-decoration: none;
   color: white;
   text-transform: capitalize;
   font-weight: bold;
+  float: left;
 }
 
-.content {
-  width: 100%;
+.dropdown {
+  float: left;
+  overflow: hidden;
+  color: white;
+  font-weight: bold;
+}
+
+.dropdown-content {
+  display: none;
   position: absolute;
-  top: 50%;
-  transform: translateY(-50);
-  text-align: center;
-  /* color: rgb(16, 15, 15); */
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+.dropdown-content a {
+  float: none;
+  color: black;
+  padding: 12px 14px;
+  text-decoration: none;
+  display: block;
+  text-align: left;
+  overflow: hidden;
+}
+
+.dropdown-content a:hover {
+  background-color: palevioletred;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
 }
 
 .logo {
@@ -81,11 +96,10 @@ background-image: radial-gradient(circle at 30%,  #7e959b 25%, #cfc0c0 35%,  #12
   text-align: center;
   text-transform: uppercase;
   font: bold 55px;
-
 }
 
 .tagline1 {
-  color: silver;
+  color: rgb(7, 6, 6);
   font-size: 15px;
   letter-spacing: 3px;
   cursor: pointer;
@@ -149,31 +163,7 @@ background-image: radial-gradient(circle at 30%,  #7e959b 25%, #cfc0c0 35%,  #12
   }
 }
 
-.about {
-  align-items: center;
-  position: relative;
-  padding: 50px;
-}
-
-.p {
-  align-items: center;
-  justify-content: center;
-}
-
-
-.about::after {
-  position: absolute;
-  font-size: 500px;
-  top: -200%;
-  font-weight: bold;
-  opacity: 0.1;
-}
-
-
-
-
 /* contact */
-
 #contact {
   position: relative;
   left: 55%;
@@ -182,7 +172,6 @@ background-image: radial-gradient(circle at 30%,  #7e959b 25%, #cfc0c0 35%,  #12
   display: flex;
   align-items: center;
   padding: 80px;
-
 }
 
 .contact-box {
@@ -197,7 +186,6 @@ background-image: radial-gradient(circle at 30%,  #7e959b 25%, #cfc0c0 35%,  #12
 }
 
 .c-heading h1 {
-  font-family: Roboto;
   color: #e7eef3;
   font-size: 2.5rem;
   font-weight: lighter;
@@ -206,7 +194,6 @@ background-image: radial-gradient(circle at 30%,  #7e959b 25%, #cfc0c0 35%,  #12
 }
 
 .c-heading p {
-  font-family: Roboto;
   color: #cecece;
   font-size: 0.8rem;
   font-weight: lighter;
@@ -247,11 +234,6 @@ background-image: radial-gradient(circle at 30%,  #7e959b 25%, #cfc0c0 35%,  #12
   padding: 8px;
   font-size: 1.2rem;
   box-sizing: border-box;
-}
-
-button:hover {
-  box-shadow: 0 3px 8px 0 #0005;
-  background: palevioletred;
 }
 
 .c-inputs input:focus {
@@ -306,23 +288,7 @@ button:hover {
     text-align: center;
   }
 }
-button {
-  border: none;
-  outline: none;
-  background: none;
-  font-family: 'Open Sans', Helvetica, Arial, sans-serif;
-}
 
- button {
-  display: block;
-  margin: 0 auto;
-  width: 220px;
-  height: 36px;
-  border-radius: 30px;
-  color: #000;
-  font-size: 15px;
-  cursor: pointer;
-}
 .submit {
   margin-top: 40px;
   margin-bottom: 20px;
@@ -349,7 +315,7 @@ button {
 /* footer */
 footer {
   position:relative;
-  margin: auto;
+  margin-top: auto;
 }
 
 @media (max-height:before) {
@@ -364,12 +330,16 @@ footer {
 
 .footer-distributed {
   background-color: #2c292f;
-  box-sizing: border-box;
   width: 100%;
   text-align: left;
   font: bold 16px sans-serif;
   padding: 40px 40px 40px 40px;
   margin-top: 80px;
+  display: block;
+  color: white;
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 20px;
 }
 
 .footer-distributed .footer-left,
@@ -395,27 +365,12 @@ footer {
   letter-spacing: 3px;
   cursor: pointer;
   text-align: left;
-  text-transform: uppercase;
 }
 
 .footer-distributed .footer-left img {
   width: 40%;
   height: 100px;
   text-align: left;
-}
-
-.footer-distributed .footer-links a {
-  display: inline-block;
-  line-height: 1.8;
-  text-decoration: none;
-  color: inherit;
-}
-
-.footer-distributed .footer-company-name {
-  color: #8f9296;
-  font-size: 14px;
-  font-weight: normal;
-  margin: 0;
 }
 
 .footer-distributed .footer-center {
@@ -439,27 +394,10 @@ footer {
 .footer-distributed .footer-center p a {
   color: white;
   text-decoration: none;
-  ;
 }
 
 .footer-distributed .footer-right {
   width: 30%;
-}
-
-.footer-distributed .footer-company-about {
-  line-height: 20px;
-  color: #92999f;
-  font-size: 13px;
-  font-weight: normal;
-  margin: 0;
-}
-
-.footer-distributed {
-  display: block;
-  color: white;
-  font-size: 18px;
-  font-weight: bold;
-  margin-bottom: 20px;
 }
 
 .footer-distributed .footer-icons {
@@ -482,7 +420,6 @@ footer {
 }
 
 @media (max-width: 880px) {
-
   .footer-distributed .footer-left,
   .footer-distributed .footer-center,
   .footer-distributed .footer-right {
@@ -495,7 +432,6 @@ footer {
   .footer-distributed .footer-center i {
     margin-left: 0;
   }
-
 }
 
 .line__separete {
@@ -523,9 +459,6 @@ footer {
   color: #fff;
   border-radius: 50%;
   outline: 2px solid #fff;
-  transition-property:
-    outline-offset, outline-color,
-    background-color;
   transition-duration: .25s;
 }
 
@@ -591,30 +524,7 @@ footer {
   }
 }
 
-@media only screen and (max-width: 800px) {
-  .container__about h2 {
-    font-size: 20px;
-  }
-
-  .container__about p {
-    font-size: 12px;
-  }
-
-  .container__recentpages h2 {
-    font-size: 20px;
-  }
-
-  .container-pages ul a {
-    font-size: 12px;
-  }
-
-  footer .by p {
-    font-size: 12px;
-  }
-}
-
 /* gallery */
-
 :root {
   --width: 100%;
   --height: 100%;
@@ -819,13 +729,22 @@ img {
     left: 150px;
   }
 }
-
+/* If the screen size is 1200px wide or more, set the font-size to 80px */
+@media (min-width: 1200px) {
+  .gallery{
+    image-resolution: 78px;
+  }
+}
+/* If the screen size is smaller than 1200px, set the font-size to 80px */
+@media (max-width: 1199.98px) {
+  .gallery {
+    font-size: 15px;
+  }
+}
 
 /* rooms */
-
 body {
   background: #eee;
-  font-family: sans-serif;
 }
 
 .flexone {
@@ -833,17 +752,15 @@ body {
 }
 
 .room1 .p {
-  text-align: center;
   align-items: center;
-  justify-content: center;
 }
-
 
 .groups {
   margin: 0 auto;
   width: 780px;
   padding: 10px;
   height: auto;
+  color: #000;
 }
 
 .groups li {
@@ -900,8 +817,7 @@ body {
   color: #0075ff;
 }
 
- .head span,
- .head input {
+ .head span,.head input {
   display: block;
   font-size: 10px;
   text-align: right;
@@ -957,8 +873,7 @@ body {
   border-radius: 50px;
   text-decoration: none;
   box-shadow: 0 1px 6px 0 #0004;
-  transition: all 0.3s;
-  
+  transition: all 0.3s; 
 }
 
 .button1:hover {
@@ -1013,7 +928,6 @@ button:hover {
   }
 }
 
-
 /* widget */
 .div {
   padding-top: 70%;
@@ -1027,15 +941,14 @@ button:hover {
   color: palevioletred;
   margin-bottom: 30px;
   text-align: center;
+  font-size: 24px;
 }
 
 .kilimanjaro_part>p {
   color: rgba(6, 6, 6, 0.5);
 }
 
-p,
-ul li,
-ol li {
+p,ul li,ol li {
   font-weight: 300;
 }
 
@@ -1049,14 +962,7 @@ ul {
   align-items: center;
 }
 
-p,
-ul li,
-ol li {
-  font-weight: 300;
-}
-
-ol li,
-ul li {
+ol li,ul li {
   list-style: outside none none;
 }
 
@@ -1065,7 +971,7 @@ ul li {
   border-radius: 6px;
   color: rgb(12, 12, 12);
   display: inline-block;
-  font-size: 13px;
+  font-size: 15px;
   margin-bottom: 4px;
   padding: 7px 14px;
 }
@@ -1074,17 +980,83 @@ li {
   background-position: center;
   padding: 22px;
 }
+/* login, singup */
+ input {
+  caret-color: rgb(17, 16, 16);
+}
+
+.containera {
+  left:510px ;
+  position: relative;
+  align-items: center;
+  padding: 39px;
+  width: 450px;
+  height: 600px;
+  border-radius: 20px;
+  padding: 80px;
+  box-sizing: border-box;
+  background: #ecf0f3;
+  box-shadow: 14px 14px 20px #cbced1, -14px -14px 20px white;
+}
+
+.brand-logo {
+  height: 100px;
+  width: 130px;
+  background: url("/static/image/logobgr5.png");
+  margin: auto;
+  border-radius: 50%;
+  box-sizing: border-box;
+  box-shadow: 7px 7px 10px #cbced1, -7px -7px 10px white;
+}
+
+.brand-title {
+  margin-top: 10px;
+  font-weight: 900;
+  font-size: 1.8rem;
+  color: palevioletred;
+  letter-spacing: 1px;
+}
+
+.inputs {
+  text-align: left;
+  margin-top: 30px;
+}
+
+label, input, button {
+  display: block;
+  width: 100%;
+  border: none;
+  outline: none;
+}
+
+label {
+  margin-bottom: 4px;
+}
+
+label:nth-of-type(2) {
+  margin-top: 12px;
+}
+
+input::placeholder {
+  color: gray;
+}
+
+.containera input {
+  background: #ecf0f3;
+  padding: 10px;
+  padding-left: 20px;
+  height: 50px;
+  font-size: 14px;
+  border-radius: 50px;
+  box-shadow: inset 6px 6px 6px #cbced1, inset -6px -6px 6px white;
+} 
 
 /* facilities */
-
 .fact {
   font-size: 12px;
 }
 .divf {
   padding-top: 80%;
-}
-.div1 {
-  padding-top: 10%;
 }
 .div2 {
   padding-top: 35%;
@@ -1095,23 +1067,20 @@ li {
   text-align: center;
 }
 
-div,
-span,
-a,
-h1,
-h2,
-h3,
-h4,
-header,
-p,
-nav,
-pre {
-  box-sizing: border-box;
-  font-family: Tahoma, Geneva, sans-serif;
+div,span,a,h1,h2,h3,h4,header,p {
   text-align: center;
 }
 
 .b{
   text-align: center;
-  font-size: 25px;
+  font-size: 22px;
+  color: #000 !important;
+}
+
+h1, h5{
+  color: palevioletred;
+}
+.room1{
+  color: #000;
+  padding: 25px;
 }

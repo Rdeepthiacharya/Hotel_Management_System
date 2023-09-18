@@ -1,5 +1,4 @@
 <html>
-
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -8,127 +7,23 @@
   <meta charset="utf-8">
   <link rel="stylesheet" href="/static/css/style.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
-  <link href="http://fonts.googleapis.com/css?family=Cookie" rel="stylesheet" type="text/css">
   <style>
     body {
-      background-image:url(/static/image/signup1.jpg);
+      background-image:url(/static/image/signup1.jpg) !important;
       background-size: cover;
     }
-    input {
-  caret-color: gray;
-}
-    
+   
 .containera {
-  left:500px ;
-  position: relative;
-  align-items: center;
-  padding: 39px;
-  width: 500px;
-  height: 700px;
-  border-radius: 20px;
-  padding: 80px;
-  box-sizing: border-box;
-  background: #ecf0f3;
-  box-shadow: 14px 14px 20px #cbced1, -14px -14px 20px white;
+  height: 700px !important;
 }
-
-.brand-logo {
-  height: 100px;
-  width: 130px;
-  background: url("/static/image/logobgr5.png");
-  margin: auto;
-  border-radius: 50%;
-  box-sizing: border-box;
-  box-shadow: 7px 7px 10px #cbced1, -7px -7px 10px white;
-}
-
-.brand-title {
-  margin-top: 10px;
-  font-weight: 900;
-  font-size: 1.8rem;
-  color: palevioletred;
-  letter-spacing: 1px;
-}
-
-.inputs {
-  text-align: left;
-  margin-top: 30px;
-}
-
-label, input, button {
-  display: block;
-  width: 100%;
-  padding: 0;
-  border: none;
-  outline: none;
-  box-sizing: border-box;
-}
-
-label {
-  margin-bottom: 4px;
-}
-
-label:nth-of-type(2) {
-  margin-top: 12px;
-}
-
-input::placeholder {
-  color: gray;
-}
-
-input {
-  background: #ecf0f3;
-  padding: 10px;
-  padding-left: 20px;
-  height: 50px;
-  font-size: 14px;
-  border-radius: 50px;
-  box-shadow: inset 6px 6px 6px #cbced1, inset -6px -6px 6px white;
-}
-
-button {
-  color: white;
-  margin-top: 20px;
-  background: palevioletred;
-  height: 40px;
-  border-radius: 20px;
-  cursor: pointer;
-  font-weight: 900;
-  box-shadow: 6px 6px 6px #cbced1, -6px -6px 6px white;
-  transition: 0.5s;
-}
-
-button:hover {
-  box-shadow: none;
-}
-
-h1 {
-  position: relative;
-  top: 0;
-  left: 0;
-}
-
   </style>
 </head>
-<header>
-  <div class="navbar">
-    <img src="/static/image/logol.jpg" class="logo1">
-    <div class="mobile">
-      <ul>
-        <li><a href="/reservations"></a></li>
-        <li><a href="/signup"> </a></li>
-        <li><a href="/">Home</a></li>
-        <li><a href="/login">Login</a></li>
-      </ul>
-    </div>
-  </div>
 
-</header>
 <body>
-  <div style="min-height:4vh; display:flex; flex-direction:column; 
-  justify-content:space-between;">
-  </div>
-  
+<header>
+  <include src="/mainheader"></include>
+</header><br><br>
+
 <form action="/signup" method="post">
   <div class="containera">
     <div class="brand-logo"></div>
@@ -150,52 +45,9 @@ h1 {
   </div>
 </form>
  
-
-  <footer class="footer-distributed">
-
-    <div class="footer-left">
-      <img src="/static/image/logol.jpg">
-      <h3>Hotel Elite</h3>
-      <h6 class="tagline">Where elegance meets comfort</h6>
-    </div>
-
-    <div class="footer-center">
-      <div class="icons">
-        <a href="#" class="icon1 icon--map"><i class="fa fa-map-marker"></i></a>
-        <p><span>Hotel Elite |
-            14 9th Main, 13th Cross Rd, Sector 6, HSR Layout</span>
-          Bengaluru, Karnataka 560102</p>
-      </div>
-      <div class="icons">
-        <a href="#" class="icon1 icon--phone"><i class="fa fa-phone"></i></a>
-        <p>500-123-4256</p>
-      </div>
-      <div class="icons">
-        <a href="#" class="icon1 icon--envelope"><i class="fa fa-envelope"></i></a>
-        <p><a href="mailto:hotelelite04@gmail.com">mail to:hotelelite04@gmail.com</a></p>
-      </div>
-    </div>
-    <div class="line__separete"></div>
-    <div class="by flex">
-      <p>&copy;2022 The Indian Hotels Company Limited | All Rights Reserved.</p>
-      <div class="icons">
-        <a href="#" class="icon1 icon--instagram">
-          <i class="fa-brands fa-instagram"></i>
-        </a>
-        <a href="#" class="icon1 icon--twitter">
-          <i class="fa-brands fa-twitter"></i>
-        </a>
-        <a href="#" class="icon1 icon--google">
-          <i class="fa-brands fa-google"></i>
-        </a>
-        <a href="#" class="icon1 icon--facebook">
-          <i class="fa-brands fa-facebook"></i>
-        </a>
-      </div>
-    </div>
-  </footer>
-
-
+    <footer class="footer-distributed">
+      <include src="/footer"></include>
+    </footer>
+    <script type="text/javascript" src="/static/js/script.js"></script>
 </body>
-
 </html>

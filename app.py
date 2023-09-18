@@ -61,6 +61,18 @@ def admin_reservations(request: Request):
 def admin_logina(request: Request):
     return templates.TemplateResponse("/admin/login.html", {"request": request}) 
 
+@app.get("/footer",response_class=HTMLResponse)
+def signup(request: Request):
+    return templates.TemplateResponse("footer.html", {"request": request})
+
+@app.get("/mainheader",response_class=HTMLResponse)
+def signup(request: Request):
+    return templates.TemplateResponse("mainheader.html", {"request": request})
+
+@app.get("/admin/adminheader",response_class=HTMLResponse)
+def signup(request: Request):
+    return templates.TemplateResponse("/admin/adminheader.html", {"request": request})
+
 
 @app.post("/login", response_class=HTMLResponse)
 def do_login(request: Request, response: Response, email: str = Form(...), password: str = Form(...)):
@@ -108,8 +120,8 @@ def facilities(request: Request):
     return templates.TemplateResponse("facilities.html", {"request": request, "factdetails":facilities})
 
 @app.post("/reservations",response_class=HTMLResponse)
-def reservation(request: Request,name:str=Form(...), email:str=Form(...),telphone:int=Form(...),address:str=Form(...),Room_type:str=Form(...),number_of_rooms:str=Form(...),other_facilities:str=Form(...),arrival_data:str=Form(...),departure_date:str=Form(...)):
-    bdetail = {"name":name,"email":email,"telphone":telphone,"address":address,"Room_type":Room_type,"number_of_rooms":number_of_rooms,"other_facilities":other_facilities,"arrival_date":arrival_data,"departure_date":departure_date}
+def reservation(request: Request,name:str=Form(...), email:str=Form(...),telphone:int=Form(...),address:str=Form(...),Room_type:str=Form(...),number_of_rooms:str=Form(...),other_facilities:str=Form(...),arrival_date:str=Form(...),departure_date:str=Form(...)):
+    bdetail = {"name":name,"email":email,"telphone":telphone,"address":address,"Room_type":Room_type,"number_of_rooms":number_of_rooms,"other_facilities":other_facilities,"arrival_date":arrival_date,"departure_date":departure_date}
     db.insert("bdetails",bdetail)
     return templates.TemplateResponse("/reservations.html", {"request": request, "msg": "Booking was successful"})
     

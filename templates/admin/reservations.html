@@ -1,34 +1,28 @@
 <html>
-
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="keywords" content="footer, address, phone, icons" />
     <title>Hotel management </title>
     <link rel="stylesheet" href="/static/css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
-    <link href="http://fonts.googleapis.com/css?family=Cookie" rel="stylesheet" type="text/css">
     <style>
         body {
-            background-image: url(/static/image/bg1.webp);
+            background-image: url(/static/image/bg1.webp) !important;
         }
 
-        
             .customers {
-            font-family: Arial, Helvetica, sans-serif;
             border-collapse: collapse;
             width: 100%;
          }
 
-         .customers td,
-         .customers th {
+         .customers td,.customers th {
             border: 1px solid #ddd;
-            padding: 3px;
+            padding: 4px;
         }
 
          .customers tr:nth-child(even) {
-            background-color: #f2f2f2;
+            background-color: #b7b3b3;
         }
 
         .customers tr:hover {
@@ -39,36 +33,21 @@
             padding-top: 12px;
             padding-bottom: 12px;
             text-align: left;
-            background-color: #43e4f3;
-            color: white;
+            background-color: #12e1e5;
+            color: rgb(15, 14, 14);
         }
-    
+
     </style>
 </head>
-<header>
-    <div class="navbar">
-        <img src="/static/image/logol.jpg" class="logo1">
-        <div class="mobile">
-            <ul>
-                <li><a href="/admin/login"></a></li>
-                <li><a href="/reservations"></a></li>
-                <li><a href="/">Home</a></li>
-                <li><a href="/admin/reservations">Bookingview</a></li>
-            </ul>
-        </div>
-    </div>
-</header>
 
 <body>
+    <header>
+        <include src="/admin/adminheader"></include>
+      </header>
+
     <h1 class="logo"> Hotel Elite</h1>
-    <h6 class="tagline1">Where elegance meets comfort</h6>
-    <div style="min-height:8vh; display:flex; flex-direction:column; 
-    justify-content:space-between;">
-</div>
-<h1>Bookingview</h1>
-<div style="min-height:6vh; display:flex; flex-direction:column; 
-justify-content:space-between;">
-</div>
+    <h6 class="tagline1">Where elegance meets comfort</h6><br><br>
+<br><h1>Bookingview</h1><br><br>
     <table class="customers">
         <thead>
             <tr>
@@ -77,11 +56,11 @@ justify-content:space-between;">
                 <th scope="col">Email</th>
                 <th scope="col">Phone</th>
                 <th scope="col">Address</th>
-                <th scope="col">room_type</th>
+                <th scope="col">Room Type</th>
                 <th scope="col">No of room</th>
                 <th scope="col">Price</th>
-                <th scope="col">other Facilities</th>
-                <th scope="col">total price</th>
+                <th scope="col">Other Facilities</th>
+                <th scope="col">Total Price</th>
                 <th scope="col">Arrival Date</th>
                 <th scope="col">Departure Date</th>
             </tr>
@@ -104,59 +83,11 @@ justify-content:space-between;">
             </tr>
             {% endfor %}
         </tbody>
-    </table>
+    </table><br><br>
 
-    <div class="div"></div>
-    <div style="min-height:14vh; display:flex; flex-direction:column; 
-        justify-content:space-between;">
-    </div>
     <footer class="footer-distributed">
-        <div class="footer-left">
-            <img src="/static/image/logol.jpg">
-            <h3>Hotel Elite</h3>
-            <h6 class="tagline">Where elegance meets comfort</h6>
-        </div>
-
-        <div class="footer-center">
-            <div class="icons">
-                <a href="#" class="icon1 icon--map"><i class="fa fa-map-marker"></i></a>
-                <p><span>Hotel Elite |
-                        14 9th Main, 13th Cross Rd, Sector 6, HSR Layout</span>
-                    Bengaluru, Karnataka 560102</p>
-            </div>
-            <div class="icons">
-                <a href="#" class="icon1 icon--phone"><i class="fa fa-phone"></i></a>
-                <p>500-123-4256</p>
-            </div>
-            <div class="icons">
-                <a href="#" class="icon1 icon--envelope"><i class="fa fa-envelope"></i></a>
-                <p><a href="mailto:hotelelite04@gmail.com">mail to:hotelelite04@gmail.com</a></p>
-            </div>
-        </div>
-
-        <div class="line__separete"></div>
-        <div class="by flex">
-            <p>&copy;2022 The Indian Hotels Company Limited | All Rights Reserved.</p>
-            <div class="icons">
-                <a href="#" class="icon1 icon--instagram">
-                    <i class="fa-brands fa-instagram"></i>
-                </a>
-                <a href="#" class="icon1 icon--twitter">
-                    <i class="fa-brands fa-twitter"></i>
-                </a>
-                <a href="#" class="icon1 icon--google">
-                    <i class="fa-brands fa-google"></i>
-                </a>
-                <a href="#" class="icon1 icon--facebook">
-                    <i class="fa-brands fa-facebook"></i>
-                </a>
-            </div>
-        </div>
+        <include src="/footer"></include>
     </footer>
-
-
-
-
+    <script type="text/javascript" src="/static/js/script.js"></script>
 </body>
-
 </html>
