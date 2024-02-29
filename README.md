@@ -1,9 +1,9 @@
 # Project Title
-Users can search for and book hotel rooms based on their preferences, dates, and room type. Users can also view photos of the hotel rooms and facilities to help them make an informed decision.
+Users can book rooms based on their preferences, dates, and room type. Users can also view photos of the hotel rooms and book other facilities to help them make an informed decision.
 
 The backend of the application manages user authentication, hotel information, room availability, and booking transactions using FastAPI endpoints to interact with the SQL database. Users can create accounts, log in securely, and manage their bookings through the website.
 
-The frontend interface allows users to easily navigate the website, search for hotels, view available rooms, and book their desired accommodation. The website also includes features such as filtering options, sorting by price or rating, and viewing reviews from other guests.
+The frontend interface allows users to easily navigate the website, search for rooms and facilities, view available rooms and, and book their desired accommodations. 
 
 Overall, this website provides a convenient platform for users to find and book accommodations for their travel needs.
 
@@ -25,7 +25,7 @@ To run the application, follow these steps:
 1. Clone the repository to your local machine.
 2. Open a terminal and navigate to the backend directory.
 3. Install the required dependencies using pip install -r requirements.txt.
-4. Start the backend server using uvicorn main:app --reload.
+4. Start the backend server using python -m uvicorn app:app --reload.
 5. Open a web browser and navigate to http://localhost:8000/ to access the application.
 
 ## Features
@@ -49,4 +49,4 @@ The application offers the following features:
 
 ## License
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+This project is licensed under the MIT License - see the [LICENSE]([LICENSE](https://github.com/Rdeepthiacharya/Hotel_Management_System/commit/94ef675ff57824d8cd4e2d9e4ba37f7e0d801f00)https://github.com/Rdeepthiacharya/Hotel_Management_System/commit/94ef675ff57824d8cd4e2d9e4ba37f7e0d801f00) file for details.
