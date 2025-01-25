@@ -1,7 +1,7 @@
 # Project Title
 Users can book rooms based on their preferences, dates, and room type. Users can also view photos of the hotel rooms and book other facilities to help them make an informed decision.
 
-The backend of the application manages user authentication, hotel information, room availability, and booking transactions using FastAPI endpoints to interact with the SQL database. Users can create accounts, log in securely, and manage their bookings through the website.
+The backend of the application manages user authentication, hotel information, room availability, and booking transactions using FastAPI endpoints to interact with the SQLite database. Users can create accounts, log in securely, and manage their bookings through the website.
 
 The frontend interface allows users to easily navigate the website, search for rooms and facilities, view available rooms and, and book their desired accommodations. 
 
@@ -11,13 +11,13 @@ Overall, this website provides a convenient platform for users to find and book 
 
 To get started with this project, you will need to have the following installed on your system:
 - Python 3
-- An SQL server (DB Browser)
+- SQLite (DB Browser)
 
 Once you have these installed, you can clone the repository and run the application on your local machine.
 
 ## Prerequisites
 
-Before running the application, you will need to create an SQL database and configure the connection details in the config.py file. You can find this file in the backend directory.
+Before running the application, you will need to create an SQLite database and configure the connection details in the dbcontroller.py file. You can find this file in the backend directory.
 
 ## Running the Application
 
@@ -39,8 +39,8 @@ The application offers the following features:
 
 ## Built With
 
-- FastAPI framework for the backend
-- SQL server for the database
+- Python FastAPI framework for the backend
+- SQLite for the database
 - HTML, CSS, and JavaScript for user interface
 
 ## Authors
