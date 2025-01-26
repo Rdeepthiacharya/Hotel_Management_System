@@ -43,10 +43,6 @@ The application offers the following features:
 - SQLite for the database
 - HTML, CSS, and JavaScript for user interface
 
-## Authors
-
-- [Deepthi G Acharya ](https://github.com/Rdeepthiacharya)
-
 ## License
 
 This project is licensed under the MIT License - see the [LICENSE]([LICENSE](https://github.com/Rdeepthiacharya/Hotel_Management_System/commit/94ef675ff57824d8cd4e2d9e4ba37f7e0d801f00)https://github.com/Rdeepthiacharya/Hotel_Management_System/commit/94ef675ff57824d8cd4e2d9e4ba37f7e0d801f00) file for details.
