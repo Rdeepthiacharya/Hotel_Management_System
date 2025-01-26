@@ -11,7 +11,8 @@ Overall, this website provides a convenient platform for users to find and book 
 
 To get started with this project, you will need to have the following installed on your system:
 - Python 3
-- SQLite (DB Browser)
+- DB Browser(SQLite)
+- VS Code (or any other application of your choice)
 
 Once you have these installed, you can clone the repository and run the application on your local machine.
 
