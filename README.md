@@ -1,4 +1,4 @@
-# Project Title
+# Project Description
 Users can book rooms based on their preferences, dates, and room type. Users can also view photos of the hotel rooms and book other facilities to help them make an informed decision.
 
 The backend of the application manages user authentication, hotel information, room availability, and booking transactions using FastAPI endpoints to interact with the SQLite database. Users can create accounts, log in securely, and manage their bookings through the website.
