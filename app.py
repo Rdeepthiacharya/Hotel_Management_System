@@ -14,6 +14,7 @@ import datetime
 import sqlite3
 from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel
+from bcrypt import hashpw, gensalt
 
 # creating a FastAPI object
 app = FastAPI()
@@ -85,15 +86,28 @@ def do_login(request: Request, response: Response, email: str = Form(...), passw
         request.session.setdefault('uid', user[0]['id'])
         return RedirectResponse("/reservations", status_code=status.HTTP_302_FOUND)
      
-@app.post("/signup", response_class=HTMLResponse)
-def do_signup(request: Request, username: str = Form(...), password: str = Form(...), email: str = Form(...) ,mobileno: int = Form(...)):
-    user = {"username":username,"password":password,"email":email ,"mobileno":mobileno}
-    db.insert("users",user)    
-    if user:
-        return templates.TemplateResponse("signup.html", {"request": request, "msg": "you succesfully created a account please login"})
-    else:
-        return RedirectResponse("/login", status_code=status.HTTP_302_FOUND)
 
+
+@app.post("/signup", response_class=HTMLResponse)
+def do_signup(request: Request, 
+              username: str = Form(...), 
+              password: str = Form(...), 
+              email: str = Form(...), 
+              mobileno: int = Form(...)):
+    existing_user = db.executeQueryWithParams("select * from users where email = ?", [email])
+    
+    if existing_user:
+        return templates.TemplateResponse("signup.html", {"request": request, "msg": "User with this email already exists. Please login."})
+    else:
+        # Hash the password before storing it
+        hashed_password = hashpw(password.encode('utf-8'), gensalt())
+        user = {"username": username, 
+                "password": hashed_password.decode('utf-8'), 
+                "email": email, 
+                "mobileno": mobileno}
+        db.insert("users", user)
+        return templates.TemplateResponse("signup.html", {"request": request, "msg": "You have successfully created an account. Please login."})
+    
 @app.post("/admin/login", response_class=HTMLResponse)
 def do_login(request: Request, email: str = Form(...) , password: str = Form(...)):
     admin = db.executeQueryWithParams("select * from admins where email=? and password=?", [email, password])[0]
@@ -120,8 +134,25 @@ def facilities(request: Request):
     return templates.TemplateResponse("facilities.html", {"request": request, "factdetails":facilities})
 
 @app.post("/reservations",response_class=HTMLResponse)
-def reservation(request: Request,name:str=Form(...), email:str=Form(...),telphone:int=Form(...),address:str=Form(...),Room_type:str=Form(...),number_of_rooms:str=Form(...),other_facilities:str=Form(...),arrival_date:str=Form(...),departure_date:str=Form(...)):
-    bdetail = {"name":name,"email":email,"telphone":telphone,"address":address,"Room_type":Room_type,"number_of_rooms":number_of_rooms,"other_facilities":other_facilities,"arrival_date":arrival_date,"departure_date":departure_date}
+def reservation(request: Request,
+                name:str=Form(...), 
+                email:str=Form(...),
+                telphone:int=Form(...),
+                address:str=Form(...),
+                Room_type:str=Form(...),
+                number_of_rooms:str=Form(...),
+                other_facilities:str=Form(...),
+                arrival_date:str=Form(...),
+                departure_date:str=Form(...)):
+    bdetail = {"name":name,
+               "email":email,
+               "telphone":telphone,
+               "address":address,
+               "Room_type":Room_type,
+               "number_of_rooms":number_of_rooms,
+               "other_facilities":other_facilities,
+               "arrival_date":arrival_date,
+               "departure_date":departure_date}
     db.insert("bdetails",bdetail)
     return templates.TemplateResponse("/reservations.html", {"request": request, "msg": "Booking was successful"})
     
