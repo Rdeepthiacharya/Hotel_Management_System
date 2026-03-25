@@ -1,93 +1,252 @@
 <html>
+
 <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Hotel management </title>
-    <link rel="stylesheet" href="/static/css/style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
-    <style>
-        body {
-            background-image: url(/static/image/bg1.webp) !important;
-        }
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Admin Booking Summary</title>
+  <link rel="icon" type="image/png" sizes="32x32" href="/static/image/favicon.ico">
+  <link rel="stylesheet" href="/static/css/style.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" />
+  <style>
+    body {
+      background-image: url(/static/image/bg1.webp) !important;
+    }
 
-            .customers {
-            border-collapse: collapse;
-            width: 100%;
-         }
+    .customers {
+      border-collapse: collapse;
+      width: 100%;
+    }
 
-         .customers td,.customers th {
-            border: 1px solid #ddd;
-            padding: 4px;
-        }
+    .customers td,
+    .customers th {
+      border: 1px solid #ddd;
+      padding: 6px;
+      text-align: center;
+    }
 
-         .customers tr:nth-child(even) {
-            background-color: #b7b3b3;
-        }
+    .customers tr:nth-child(even) {
+      background-color: #f2f2f2;
+    }
 
-        .customers tr:hover {
-            background-color: #ddd;
-        }
+    .customers tr:hover {
+      background-color: #ddd;
+    }
 
-        .customers th {
-            padding-top: 12px;
-            padding-bottom: 12px;
-            text-align: left;
-            background-color: #12e1e5;
-            color: rgb(15, 14, 14);
-        }
+    .customers th {
+      padding-top: 12px;
+      padding-bottom: 12px;
+      background-color: #12e1e5;
+      color: rgb(15, 14, 14);
+      text-align: center;
+    }
 
-    </style>
+    /* === Highlight FULL rows === */
+    .full-row {
+      background-color: #ffcccc !important;
+      /* light red */
+      font-weight: bold;
+    }
+
+    .available-row {
+      background-color: #ccffcc !important;
+      /* light green */
+    }
+
+    .status-full {
+      color: red;
+      font-weight: bold;
+    }
+
+    .status-available {
+      color: green;
+      font-weight: bold;
+    }
+
+    .customers td:last-child {
+      width: 130px !important;
+      max-width: 130px !important;
+      overflow: hidden !important;
+    }
+
+    .customers td:last-child form {
+      width: 100%;
+      margin: 0 !important;
+      padding: 0 !important;
+    }
+
+    .customers td:last-child button {
+    width: fit-content !important;
+    max-width: 100% !important;
+    padding: 8px 14px !important;
+    border: 0 !important;
+    border-radius: 8px !important;
+    background: linear-gradient(135deg, rgba(216, 112, 147, 1), rgba(234, 176, 198, 1)) !important;
+    color: #fff !important;
+    cursor: pointer !important;
+    display: block !important;
+    margin: 0 auto !important;
+    transition: background 0.3s ease !important;
+}
+
+.customers td:last-child button:hover {
+    background: gray !important;
+}
+
+    .customers th:last-child,
+    .customers td:last-child {
+      width: 120px;
+      max-width: 120px;
+      padding: 6px;
+      text-align: center;
+      vertical-align: middle;
+    }
+
+    td form {
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+  </style>
 </head>
 
 <body>
-    <header>
-        <include src="/admin/adminheader"></include>
-      </header>
+  <header>
+    <div class="navbar">
+      <img src="/static/image/logol.jpg" class="logo1">
+      <div class="mobile">
+        <div class="nav">
+          <div class="bar"><a href="/logout">Logout</a></div>
+        </div>
+      </div>
+    </div>
+  </header>
 
-    <h1 class="logo"> Hotel Elite</h1>
-    <h6 class="tagline1">Where elegance meets comfort</h6><br><br>
-<br><h1>Bookingview</h1><br><br>
+  <h1 class="logo">Hotel Elite</h1>
+  <h6 class="tagline1">Where elegance meets comfort</h6>
+
+  <h1>Booking View</h1>
+  <br />
+
+  <!-- Booking Details Table -->
+  <div style="overflow-x:auto;">
     <table class="customers">
-        <thead>
-            <tr>
-                <th scope="col">id</th>
-                <th scope="col">Username</th>
-                <th scope="col">Email</th>
-                <th scope="col">Phone</th>
-                <th scope="col">Address</th>
-                <th scope="col">Room Type</th>
-                <th scope="col">No of room</th>
-                <th scope="col">Price</th>
-                <th scope="col">Other Facilities</th>
-                <th scope="col">Total Price</th>
-                <th scope="col">Arrival Date</th>
-                <th scope="col">Departure Date</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for reservation in bdetails %}
-            <tr>
-                <th scope="row">{{ reservation.id }}</th>
-                <td>{{reservation.name}}</td>
-                <td>{{reservation.email}}</td>
-                <td>{{reservation.telphone}}</td>
-                <td>{{reservation.address}}</td>
-                <td>{{reservation.room_type}}</td>
-                <td>{{reservation.number_of_rooms}}</td>
-                <td>1000</td>
-                <td>{{reservation.other_facilities}}</td>
-                <td>{{reservation.number_of_rooms | int * 1000 | int}}</td>
-                <td>{{reservation.arrival_date}}</td>
-                <td>{{reservation.departure_date}}</td>
-            </tr>
-            {% endfor %}
-        </tbody>
-    </table><br><br>
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Username</th>
+          <th>Email</th>
+          <th>Phone</th>
+          <th>Address</th>
+          <th>Room Type</th>
+          <th>No. of Rooms</th>
+          <th>Price (₹)</th>
+          <th>Other Facilities</th>
+          <th>Total Price (₹)</th>
+          <th>Arrival Date</th>
+          <th>Departure Date</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for reservation in bdetails %}
+        <tr>
+          <td>{{ reservation.id }}</td>
+          <td>{{ reservation.name }}</td>
+          <td>{{ reservation.email }}</td>
+          <td>{{ reservation.telphone }}</td>
+          <td>{{ reservation.address }}</td>
+          <td>{{ reservation.room_type }}</td>
+          <td>{{ reservation.number_of_rooms }}</td>
+          <td>1000</td>
+          <td>{{ reservation.other_facilities }}</td>
+          <td>{{ reservation.number_of_rooms | int * 1000 | int }}</td>
+          <td>{{ reservation.arrival_date }}</td>
+          <td>{{ reservation.departure_date }}</td>
+          <td style="text-align: center; vertical-align: middle; width: 120px;">
+            <form action="/admin/reservations/{{ reservation.id }}/cancel" method="post" style="margin: 0; padding: 0;">
+              <button type="submit"
+                style="padding: 8px 14px; border: 0; border-radius: 8px; background: linear-gradient(135deg, rgba(216, 112, 147, 1), rgba(234, 176, 198, 1)); color: #fff; cursor: pointer; width: auto; display: block; margin: 0 auto;">Cancel</button>
+            </form>
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
 
-    <footer class="footer-distributed">
-        <include src="/footer"></include>
-    </footer>
-    <script type="text/javascript" src="/static/js/script.js"></script>
+  <br /><br />
+
+  <!-- Room Availability Summary -->
+  <h2>Room Availability Summary</h2>
+  <table class="customers">
+    <thead>
+      <tr>
+        <th>Room Type</th>
+        <th>Total Rooms</th>
+        <th>Booked Rooms</th>
+        <th>Available Rooms</th>
+        <th>Status</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for room in rooms %}
+      <tr class="{% if room.available_rooms == 0 %}full-row{% else %}available-row{% endif %}">
+        <td>{{ room.name }}</td>
+        <td>{{ room.total_rooms }}</td>
+        <td>{{ room.booked_rooms }}</td>
+        <td>{{ room.available_rooms }}</td>
+        <td>
+          {% if room.available_rooms == 0 %}
+          <span class="status-full">FULL</span>
+          {% else %}
+          <span class="status-available">Available</span>
+          {% endif %}
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+
+  <br /><br />
+
+  <!-- Facility Availability Summary -->
+  <h2>Facility Availability Summary</h2>
+  <table class="customers">
+    <thead>
+      <tr>
+        <th>Facility</th>
+        <th>Total Slots</th>
+        <th>Booked Slots</th>
+        <th>Available Slots</th>
+        <th>Status</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for f in facilities %}
+      <tr class="{% if f.available_slots == 0 %}full-row{% else %}available-row{% endif %}">
+        <td>{{ f.name }}</td>
+        <td>{{ f.total_slots }}</td>
+        <td>{{ f.booked_slots }}</td>
+        <td>{{ f.available_slots }}</td>
+        <td>
+          {% if f.available_slots == 0 %}
+          <span class="status-full">FULL</span>
+          {% else %}
+          <span class="status-available">Available</span>
+          {% endif %}
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+
+  <br /><br />
+
+  <footer class="footer-distributed">{% include 'footer.html' %}</footer>
+  <script type="text/javascript" src="/static/js/script.js"></script>
 </body>
+
 </html>

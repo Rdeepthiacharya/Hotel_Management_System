@@ -1,13 +1,15 @@
 <html>
+
 <head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Gallery</title>
-  <link rel="stylesheet" href="/static/css/style.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
+  <link rel="icon" type="image/png" sizes="32x32" href="/static/image/favicon.ico">
+  <link rel="stylesheet" href="/static/css/style.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" />
   <style>
-    body{
+    body {
       background-image: url(/static/image/bg1.webp) !important;
       background-size: cover;
     }
@@ -15,72 +17,71 @@
 </head>
 
 <body>
-  <header>
-    <include src="/mainheader"></include>
-  </header>
+  <header>{% include 'mainheader.html' %}</header>
 
-<br><h1>GALLERY</h1><br><br>
+  <br />
+  <h1>GALLERY</h1>
+  <br /><br />
   <div class="gallery">
     <div class="clipped-border">
-      <img src="" id="clipped">
+      <img src="" id="clipped" />
     </div>
     <div class="clipped-border">
-      <img src="/static/image/imgg1.jpeg" id="clipped">
+      <img src="/static/image/imgg1.jpeg" id="clipped" />
     </div>
     <div class="clipped-border">
-      <img src="/static/image/imgpt.jpg" id="clipped">
+      <img src="/static/image/imgpt.jpg" id="clipped" />
     </div>
     <div class="clipped-border">
-      <img src="/static/image/imgg2.jpeg" id="clipped">
+      <img src="/static/image/imgg2.jpeg" id="clipped" />
     </div>
     <div class="clipped-border">
-      <img src="/static/image/imgev.jpg" id="clipped">
+      <img src="/static/image/imgev.jpg" id="clipped" />
     </div>
     <div class="clipped-border">
-      <img src="/static/image/bg2.jpeg" id="clipped">
+      <img src="/static/image/bg2.jpeg" id="clipped" />
     </div>
     <div class="clipped-border">
-      <img src="/static/image/imgd.jpg" id="clipped">
+      <img src="/static/image/imgd.jpg" id="clipped" />
     </div>
     <div class="clipped-border">
-      <img src="/static/image/imgspa.jpg" id="clipped">
+      <img src="/static/image/imgspa.jpg" id="clipped" />
     </div>
     <div class="clipped-border">
-      <img src="/static/image/event space.jpg" id="clipped">
+      <img src="/static/image/event space.jpg" id="clipped" />
     </div>
     <div class="clipped-border">
-      <img src="/static/image/imgsp.jpg" id="clipped">
+      <img src="/static/image/imgsp.jpg" id="clipped" />
     </div>
     <div class="clipped-border">
-      <img src="/static/image/rr.jpg" id="clipped">
+      <img src="/static/image/rr.jpg" id="clipped" />
     </div>
     <div class="clipped-border">
-      <img src="/static/image/r2.jpg" id="clipped">
+      <img src="/static/image/r2.jpg" id="clipped" />
     </div>
     <div class="clipped-border">
-      <img src="/static/image/rr1.jpg" id="clipped">
+      <img src="/static/image/rr1.jpg" id="clipped" />
     </div>
     <div class="clipped-border">
-      <img src="/static/image/rr2.jpg" id="clipped">
+      <img src="/static/image/rr2.jpg" id="clipped" />
     </div>
     <div class="clipped-border">
-      <img src="/static/image/r3.jpg" id="clipped">
+      <img src="/static/image/r3.jpg" id="clipped" />
     </div>
     <div class="clipped-border">
-      <img src="/static/image/r4.jpg" id="clipped">
+      <img src="/static/image/r4.jpg" id="clipped" />
     </div>
     <div class="clipped-border">
-      <img src="/static/image/imgs7.jpeg" id="clipped">
+      <img src="/static/image/imgs7.jpeg" id="clipped" />
     </div>
     <div class="clipped-border">
-      <img src="/static/image/rr1.jpg" id="clipped">
+      <img src="/static/image/rr1.jpg" id="clipped" />
     </div>
     <div class="shadow"></div>
   </div>
 
-  <footer class="footer-distributed">
-    <include src="/footer"></include>
-  </footer>
+  <footer class="footer-distributed">{% include 'footer.html' %}</footer>
   <script type="text/javascript" src="/static/js/script.js"></script>
 </body>
+
 </html>

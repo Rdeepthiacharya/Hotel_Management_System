@@ -1,53 +1,51 @@
 <html>
+
 <head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Signup</title>
-  <meta charset="utf-8">
-  <link rel="stylesheet" href="/static/css/style.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
+  <link rel="icon" type="image/png" sizes="32x32" href="/static/image/favicon.ico">
+  <link rel="stylesheet" href="/static/css/style.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" />
   <style>
     body {
-      background-image:url(/static/image/signup1.jpg) !important;
+      background-image: url(/static/image/signup1.jpg) !important;
       background-size: cover;
     }
-   
-.containera {
-  height: 700px !important;
-}
+
+    .containera {
+      height: 700px !important;
+    }
   </style>
 </head>
 
 <body>
-<header>
-  <include src="/mainheader"></include>
-</header><br><br>
+  <header>{% include 'mainheader.html' %}</header>
+  <br /><br />
 
-<form action="/signup" method="post">
-  <div class="containera">
-    <div class="brand-logo"></div>
-    <div class="brand-title">Signup Form</div>
-    <div class="inputs">
-      <label>NAME&nbsp;&nbsp;<i class="fa-solid fa-user"></i></label>
-      <input type="text" placeholder="full name"  name="username" required />
-      <label>EMAIL&nbsp;&nbsp;<i class="fa-solid fa-square-envelope"></i></label>
-      <input type="email" placeholder="example@test.com" name="email" required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"/>
-      <label>Mobile NO&nbsp;&nbsp;<i class="fa-solid fa-phone"></i></label>
-      <input type="tel" maxlength="10"  
-      placeholder="Mobile number" name="mobileno" required>
-      <label>PASSWORD&nbsp;&nbsp;<i class="fa-solid fa-key"></i></label>
-      <input type="password" placeholder="Min 6 charaters long"  name="password"  required />
-      <h4>{{msg}}</h4>
-  <button type="submit" class="submit">SIGN UP&nbsp;&nbsp;<i class="fa-solid fa-user-plus"></i></button>
-  <h5><a href="/login" class="d">Already have an account? Login</a> </h5>
+  <form action="/signup" method="post">
+    <div class="containera">
+      <div class="brand-logo"></div>
+      <div class="brand-title">Signup Form</div>
+      <div class="inputs">
+        <label>NAME&nbsp;&nbsp;<i class="fa-solid fa-user"></i></label>
+        <input type="text" placeholder="full name" name="username" required />
+        <label>EMAIL&nbsp;&nbsp;<i class="fa-solid fa-square-envelope"></i></label>
+        <input type="email" placeholder="example@test.com" name="email" required
+          pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" />
+        <label>Mobile NO&nbsp;&nbsp;<i class="fa-solid fa-phone"></i></label>
+        <input type="tel" maxlength="10" placeholder="Mobile number" pattern="[0-9]{10}" name="mobileno" required />
+        <label>PASSWORD&nbsp;&nbsp;<i class="fa-solid fa-key"></i></label>
+        <input type="password" placeholder="Min 6 charaters long" name="password" required />
+        <h4>{{msg}}</h4>
+        <button type="submit" class="submit">
+          SIGN UP&nbsp;&nbsp;<i class="fa-solid fa-user-plus"></i>
+        </button>
+        <h5><a href="/login" class="d">Already have an account? Login</a></h5>
+      </div>
     </div>
-  </div>
-</form>
- 
-    <footer class="footer-distributed">
-      <include src="/footer"></include>
-    </footer>
-    <script type="text/javascript" src="/static/js/script.js"></script>
+  </form>
 </body>
+
 </html>

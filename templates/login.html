@@ -1,44 +1,43 @@
 <html>
+
 <head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Login</title>
-  <meta charset="utf-8">
-  <link rel="stylesheet" href="/static/css/style.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
+  <link rel="icon" type="image/png" sizes="32x32" href="/static/image/favicon.ico">
+  <link rel="stylesheet" href="/static/css/style.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" />
   <style>
     body {
-      background-image:url(/static/image/signup1.jpg) !important;
+      background-image: url(/static/image/signup1.jpg) !important;
       background-size: cover;
     }
   </style>
 </head>
 
 <body>
-  <header>
-    <include src="/mainheader"></include>
-  </header><br><br>
+  <header>{% include 'mainheader.html' %}</header>
+  <br /><br />
 
   <form action="/login" method="post">
-  <div class="containera">
-    <div class="brand-logo"></div>
-    <div class="brand-title">Login Form </div>
-    <div class="inputs">
-      <label>EMAIL&nbsp;&nbsp;<i class="fa-solid fa-square-envelope"></i></label>
-      <input type="email" name="email" placeholder="example@gmail.com" required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"/>
-      <label>PASSWORD&nbsp;&nbsp;<i class="fa-solid fa-key"></i></label>
-      <input type="password" name="password" placeholder="Min 6 charaters long" required />
-    <h4>{{msg}}</h4>
-    <button type="submit" class="submit">LOGIN&nbsp;&nbsp;<i class="fa-solid fa-right-to-bracket"></i></button>
-    <h5><a href="/signup" class="d">Don't have an account? Signup</a> </h5>
+    <div class="containera">
+      <div class="brand-logo"></div>
+      <div class="brand-title">Login Form</div>
+      <div class="inputs">
+        <label>EMAIL&nbsp;&nbsp;<i class="fa-solid fa-square-envelope"></i></label>
+        <input type="email" name="email" placeholder="example@gmail.com" required
+          pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" />
+        <label>PASSWORD&nbsp;&nbsp;<i class="fa-solid fa-key"></i></label>
+        <input type="password" name="password" placeholder="Min 6 charaters long" required />
+        <h4>{{msg}}</h4>
+        <button type="submit" class="submit">
+          LOGIN&nbsp;&nbsp;<i class="fa-solid fa-right-to-bracket"></i>
+        </button>
+        <h5><a href="/signup" class="d">Don't have an account? Signup</a></h5>
+      </div>
     </div>
-  </div>
-</form>
-
-    <footer class="footer-distributed">
-      <include src="/footer"></include>
-    </footer>
-    <script type="text/javascript" src="/static/js/script.js"></script>
+  </form>
 </body>
+
 </html>

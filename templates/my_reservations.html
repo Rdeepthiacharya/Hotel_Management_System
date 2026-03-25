@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>My Reservations</title>
+    <link rel="icon" type="image/png" sizes="32x32" href="/static/image/favicon.ico">
+    <link rel="stylesheet" href="/static/css/style.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" />
+    <style>
+        body {
+            background-image: url(/static/image/bg1.webp) !important;
+        }
+
+        .customers {
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        .customers td,
+        .customers th {
+            border: 1px solid #ddd;
+            padding: 6px;
+            text-align: center;
+        }
+
+        .customers tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        .customers tr:hover {
+            background-color: #ddd;
+        }
+
+        .customers th {
+            padding-top: 12px;
+            padding-bottom: 12px;
+            background-color: #12e1e5;
+            color: rgb(15, 14, 14);
+            text-align: center;
+        }
+
+        .action-btn {
+            border: 0;
+            padding: 8px 12px;
+            border-radius: 8px;
+            background: linear-gradient(135deg, rgba(216, 112, 147, 1), rgba(234, 176, 198, 1));
+            color: #fff;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="navbar">
+            <img src="/static/image/logol.jpg" class="logo1">
+            <div class="mobile">
+                <div class="nav">
+                    <div class="bar"><a href="/logout">Logout</a></div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <h1 class="logo">Hotel Elite</h1>
+    <h6 class="tagline1">Where elegance meets comfort</h6>
+
+    <h1>My Booking View</h1>
+    <br />
+
+    <table class="customers">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Room Type</th>
+                <th>No. of Rooms</th>
+                <th>Other Facilities</th>
+                <th>Arrival Date</th>
+                <th>Departure Date</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for reservation in bdetails %}
+            <tr>
+                <td>{{ reservation.id }}</td>
+                <td>{{ reservation.room_type }}</td>
+                <td>{{ reservation.number_of_rooms }}</td>
+                <td>{{ reservation.other_facilities }}</td>
+                <td>{{ reservation.arrival_date }}</td>
+                <td>{{ reservation.departure_date }}</td>
+                <td>
+                    <form action="/reservations/{{ reservation.id }}/cancel" method="post">
+                        <button class="action-btn" type="submit">Cancel</button>
+                    </form>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <br><br>
+
+    <footer class="footer-distributed">{% include 'footer.html' %}</footer>
+    <script type="text/javascript" src="/static/js/script.js"></script>
+</body>
+
+</html>

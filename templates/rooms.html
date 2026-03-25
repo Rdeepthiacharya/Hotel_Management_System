@@ -1,9 +1,11 @@
 <html>
+
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Rooms</title>
+  <link rel="icon" type="image/png" sizes="32x32" href="/static/image/favicon.ico">
   <link rel="stylesheet" href="/static/css/style.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
   <style>
@@ -12,7 +14,7 @@
     }
 
     .groups li {
-      background-image: url(/static/image/bdfact1.jpg) !important;
+      background-image: url(/static/image/bgfact2.jpg) !important;
     }
 
     .button2 {
@@ -39,64 +41,72 @@
 
 <body>
   <header>
-    <include src="/mainheader"></include>
+    {% include 'mainheader.html' %}
   </header>
-  
-    <br><h1>ROOMS</h1>
-    <div class="room1">
-      <p>The guest rooms at hotel Elite, Bengaluru, have been thoughtfully designed to exceed your expectations on
-          comfort as well as providing all you need to succeed at your work. This 5-star hotel in Bengaluru
-          introduces a paradisiacal stay to all the guests. Standing as an epitome of elegance and charm, the
-          hotel unifies class and comfort.</p>
+
+  <br>
+  <h1>ROOMS</h1>
+  <div class="room1">
+    <p>The guest rooms at hotel Elite, Bengaluru, have been thoughtfully designed to exceed your expectations on
+      comfort as well as providing all you need to succeed at your work. This 5-star hotel in Bengaluru
+      introduces a paradisiacal stay to all the guests. Standing as an epitome of elegance and charm, the
+      hotel unifies class and comfort.</p>
   </div><br>
+
+  <ul class="groups">
+    {% for room in rdetails %}
+    <li class="{% if room.available_rooms == 0 %}full{% endif %}">
+      <div class="image-session">
+        <span class="image"><img src="{{ room.image }}" alt="" height="150" /></span>
+      </div>
     
-      <ul class="groups">
-        {% for room in rdetails %}
-        <li>
-          <div class="image-session">
-            <span class="image"><img src="{{room.image}}" alt="" height="150" /></span>
-          </div>
+      <div class="head">
+        <div>
+          <h5 class="b">{{ room.name }}</h5>
+          <p>{{ room.desc }}</p>
+          <p class="a">Price: {{ room.price }}</p>
+    
+          {% if room.available_rooms > 0 %}
+          <a href="/login" class="button2">Book Now&nbsp;&nbsp;<i class="fa-solid fa-ticket"></i></a>
+          {% else %}
+          <button class="button2 full-btn" disabled>Fully Booked</button>
+          {% endif %}
+        </div>
+      </div>
+    </li>
 
-          <div class="head">
-            <div>
-              <h5 class="b"> {{room.name}} </h5>
-              <p> {{room.desc}}</p>
-              <p class="a">Price: {{room.price}}</p>
-              <a href="/login" class="button2">Book Now&nbsp;&nbsp;<i class="fa-solid fa-ticket"></i></a>
-            </div>
-          </div>
+    {% endfor %}
+  </ul>
+  <br><br><br><br><br><br><br><br><br>
+  <div class="div">
+    <div class="kilimanjaro_part">
+      <h5>Other facilities</h5>
+      <ul class=" kilimanjaro_widget">
+        <li><a href="#"><i class="fa-solid fa-square-check"></i>&nbsp;&nbsp;Spacious Hygienic Room</a></li>
+        <li><a href="#"><i class="fa-solid fa-square-check"></i>&nbsp;&nbsp;Disable Access</a></li>
+        <li><a href="#"><i class="fa-solid fa-square-check"></i>&nbsp;&nbsp;24-hour high speed internet</a> </li>
+        <li><a href="#"><i class="fa-solid fa-square-check"></i>&nbsp;&nbsp;Restaurant</a></li>
+        <li><a href="#"><i class="fa-solid fa-square-check"></i>&nbsp;&nbsp;Pets Allowed</a></li>
+        <li><a href="#"><i class="fa-solid fa-square-check"></i>&nbsp;&nbsp;Room service</a></li>
+        <li><a href="#"><i class="fa-solid fa-square-check"></i>&nbsp;&nbsp;Safety & Security</a></li>
+        <li><a href="#"><i class="fa-solid fa-square-check"></i>&nbsp;&nbsp;43” HD smart TV</a></li>
+        <li><a href="#"><i class="fa-solid fa-square-check"></i>&nbsp;&nbsp;Laundry services on a chargeable basis</a>
         </li>
-        {% endfor %}
+        <li><a href="#"><i class="fa-solid fa-square-check"></i>&nbsp;&nbsp;Air Dryer</a></li>
+        <li><a href="#"><i class="fa-solid fa-square-check"></i>&nbsp;&nbsp;Air Condition</a></li>
+        <li><a href="#"><i class="fa-solid fa-square-check"></i>&nbsp;&nbsp;Iron and Ironing Board On Request</a></li>
+        <li><a href="#"><i class="fa-solid fa-square-check"></i>&nbsp;&nbsp;24 Hour Coffee Shop</a></li>
+        <li><a href="#"><i class="fa-solid fa-square-check"></i>&nbsp;&nbsp;Baby Cot On Request</a></li>
+        <li><a href="#"><i class="fa-solid fa-square-check"></i>&nbsp;&nbsp;Writing Table</a></li>
+        <li><a href="#"><i class="fa-solid fa-square-check"></i>&nbsp;&nbsp;24 Hour Coffee Shop</a></li>
+        <li><a href="#"><i class="fa-solid fa-square-check"></i>&nbsp;&nbsp;Bathtub/Shower Cubical</a></li>
+        <li><a href="#"><i class="fa-solid fa-square-check"></i>&nbsp;&nbsp;Sound-proof windows</a></li>
+        <li><a href="#"><i class="fa-solid fa-square-check"></i>&nbsp;&nbsp;Tea-Coffee Maker</a></li>
       </ul>
- <br><br><br><br><br><br><br><br><br>
-    <div class="div">
-      <div class="kilimanjaro_part">
-        <h5>Other facilities</h5>
-        <ul class=" kilimanjaro_widget">
-          <li><a href="#"><i class="fa-solid fa-square-check"></i>&nbsp;&nbsp;Spacious Hygienic Room</a></li>
-          <li><a href="#"><i class="fa-solid fa-square-check"></i>&nbsp;&nbsp;Disable Access</a></li>
-          <li><a href="#"><i class="fa-solid fa-square-check"></i>&nbsp;&nbsp;24-hour high speed internet</a> </li>
-          <li><a href="#"><i class="fa-solid fa-square-check"></i>&nbsp;&nbsp;Restaurant</a></li>
-          <li><a href="#"><i class="fa-solid fa-square-check"></i>&nbsp;&nbsp;Pets Allowed</a></li>
-          <li><a href="#"><i class="fa-solid fa-square-check"></i>&nbsp;&nbsp;Room service</a></li>
-          <li><a href="#"><i class="fa-solid fa-square-check"></i>&nbsp;&nbsp;Safety & Security</a></li>
-          <li><a href="#"><i class="fa-solid fa-square-check"></i>&nbsp;&nbsp;43” HD smart TV</a></li>
-          <li><a href="#"><i class="fa-solid fa-square-check"></i>&nbsp;&nbsp;Laundry services on a chargeable basis</a></li>
-          <li><a href="#"><i class="fa-solid fa-square-check"></i>&nbsp;&nbsp;Air Dryer</a></li>
-          <li><a href="#"><i class="fa-solid fa-square-check"></i>&nbsp;&nbsp;Air Condition</a></li>
-          <li><a href="#"><i class="fa-solid fa-square-check"></i>&nbsp;&nbsp;Iron and Ironing Board On Request</a></li>
-          <li><a href="#"><i class="fa-solid fa-square-check"></i>&nbsp;&nbsp;24 Hour Coffee Shop</a></li>
-          <li><a href="#"><i class="fa-solid fa-square-check"></i>&nbsp;&nbsp;Baby Cot On Request</a></li>
-          <li><a href="#"><i class="fa-solid fa-square-check"></i>&nbsp;&nbsp;Writing Table</a></li>
-          <li><a href="#"><i class="fa-solid fa-square-check"></i>&nbsp;&nbsp;24 Hour Coffee Shop</a></li>
-          <li><a href="#"><i class="fa-solid fa-square-check"></i>&nbsp;&nbsp;Bathtub/Shower Cubical</a></li>
-          <li><a href="#"><i class="fa-solid fa-square-check"></i>&nbsp;&nbsp;Sound-proof windows</a></li>
-          <li><a href="#"><i class="fa-solid fa-square-check"></i>&nbsp;&nbsp;Tea-Coffee Maker</a></li>
- </ul>
-      </div><br><br>
+    </div><br><br>
 
-      <h5 style="font-size: 24px;">Additional Hotel Information</h5>
-      <div class="room1">
+    <h5 style="font-size: 24px;">Additional Hotel Information</h5>
+    <div class="room1">
       <p class="a">Checking In:</p>
       <p>Extra-person charges may apply and vary depending on hotel policy.
         Guests must show current government-issued proof of identity at the time of check-in.
@@ -105,10 +115,11 @@
         cannot be guaranteed.
       </p>
     </div>
-    
+
     <footer class="footer-distributed">
-      <include src="/footer"></include>
+      {% include 'footer.html' %}
     </footer>
     <script type="text/javascript" src="/static/js/script.js"></script>
-  </body>
+</body>
+
 </html>

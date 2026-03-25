@@ -1,53 +1,62 @@
 <html>
+
 <head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Facilities </title>
-  <link rel="stylesheet" href="/static/css/style.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Facilities</title>
+  <link rel="icon" type="image/png" sizes="32x32" href="/static/image/favicon.ico">
+  <link rel="stylesheet" href="/static/css/style.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" />
   <style>
     body {
       background-image: url(/static/image/bg1.webp) !important;
     }
 
     .groups li {
-      background-image: url(/static/image/bgfact2.avif) !important;
+      background-image: url(/static/image/bgfact1.jpg) !important;
     }
   </style>
 </head>
-<body>
-  <header>
-    <include src="/mainheader"></include>
-  </header>
 
-  <br><h1>FACILITIES</h1><br><br>
-  <div> <ul class="groups">
+<body>
+  <header>{% include 'mainheader.html' %}</header>
+
+  <br />
+  <h1>FACILITIES</h1>
+  <br /><br />
+  <div>
+    <ul class="groups">
       {% for facility in factdetails %}
-      <li>
+      <li class="{% if facility.available_slots == 0 %}full{% endif %}">
         <div class="image-session">
-          <span class="image">
-            <img src="{{facility.image}}" alt="" height="150" />
-          </span><br><br>
+          <span class="image"><img src="{{ facility.image }}" alt="" height="150" /></span><br /><br />
         </div>
         <div class="head">
           <span class="flexone"></span>
           <div>
-            <h5 class="b"> {{facility.name}} </h5>
-            <p> {{facility.desc}}</p>
+            <h5 class="b">{{ facility.name }}</h5>
+            <p>{{ facility.desc }}</p>
+            {% if facility.available_slots > 0 %}
             <a href="/login" class="button">Book Now&nbsp;&nbsp;<i class="fa-solid fa-ticket"></i></a>
+            {% else %}
+            <button class="button full-btn" disabled>Fully Booked</button>
+            {% endif %}
           </div>
         </div>
       </li>
-      <a href="/static/image/hotel_elite_food_menu.pdf" class="button1">Download&nbsp;&nbsp; <i class="fa-solid fa-download"></i></a>
-      {% endfor %}
-    </ul></div>
-  <div class="divf"></div>
-  <div class="div2"></div><br>
 
-  <footer class="footer-distributed">
-    <include src="/footer"></include>
-  </footer>
+      <a href="/static/image/hotel_elite_food_menu.pdf" class="button1">Download&nbsp;&nbsp; <i
+          class="fa-solid fa-download"></i></a>
+      {% endfor %}
+    </ul>
+  </div>
+  <div class="divf"></div>
+  <div class="div2"></div>
+  <br />
+
+  <footer class="footer-distributed">{% include 'footer.html' %}</footer>
   <script type="text/javascript" src="/static/js/script.js"></script>
 </body>
+
 </html>

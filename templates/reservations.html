@@ -1,147 +1,465 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
-    <title>Reservtion Form</title>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js"></script>
-    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/themes/base/jquery-ui.css">
-    <style>
-        * {
-          margin: 0;
-          padding: 0;
-          font-family: Tahoma, Geneva, sans-serif;
-          box-sizing: border-box;
-          }
-          body {
-            background-image: url(/static/image/rev.jpeg) !important;
-            background-size: cover;
-        }
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Reservation Form</title>
+  <link rel="icon" type="image/png" sizes="32x32" href="/static/image/favicon.ico">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" />
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      font-family: Tahoma, Geneva, sans-serif;
+      box-sizing: border-box;
+    }
 
+    body {
+      background-image: url(/static/image/rev.jpeg);
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+    }
 
-        a{
-             text-decoration: none;
-             color: #fff;
-         }
+    /* navbar */
+    .logo1 {
+      width: 5%;
+      cursor: pointer;
+    }
 
-        h1 {
-            margin: 0;
-            padding: 28px;
-            font-size: 35px;
-            border-bottom: 1px solid #eceff2;
-            color: #6a737f;
-            font-weight: 600;
-            background-color: #f9fbfc;
-            text-align: justify;
-        }
+    .navbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background-image: radial-gradient(circle at 30%,
+          #7e959b 25%,
+          #cfc0c0 35%,
+          #12e1e5 85%);
+      margin-bottom: 15px;
+    }
 
-        .field {
-            padding-bottom: 8px;
-            padding-left: 40px;
-        }
+    .navbar .nav {
+      display: inline-flex;
+    }
 
-        button {
-            position: relative;
-            bottom: 20px;
-            background: palevioletred;
-            color: #fff;
-            line-height: 2.2;
-            padding: 0 20px;
-            border-radius: 50px;
-            text-decoration: none;
-            box-shadow: 0 1px 6px 0 #0004;
-            transition: all 0.3s;
-        }
+    .navbar .nav .bar {
+      display: inline-block;
+      padding: 10px 25px;
+      position: relative;
+    }
 
-        button:hover {
-            box-shadow: 0 3px 8px 0 #0005;
-            background: gray;
-        }
+    .navbar .nav .bar a:hover,
+    .dropdown .bar:hover {
+      color: #8b2f5a;
+      text-align: center;
+      transition: 0.3s;
+    }
 
-        input {
-            background: #ecf0f3;
-            padding: 10px;
-            padding-left: 20px;
-            height: 35px;
-            font-size: 14px;
-            border-radius: 50px;
-            box-shadow: inset 6px 6px 6px transparent, inset -6px -6px 6px transparent;
-        }
+    .navbar .nav .bar a {
+      text-decoration: none;
+      color: white;
+      text-transform: capitalize;
+      font-weight: bold;
+      float: left;
+    }
 
-        .field1 {
-            padding-bottom: 8px;
-            padding-left: 40px;
-        }
+    .hotel-reservation-form {
+      width: 80%;
+      max-width: 600px;
+      margin: 20px auto;
+      padding: 25px;
+      border-radius: 15px;
+      box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+      background: rgba(255, 230, 240, 0.7);
+    }
 
-        .field1 input {
-            width: 20px;
-        }
+    h1 {
+      text-align: center;
+      font-size: 32px;
+      color: #8b2f5a;
+    }
 
-        .field label,.field1 label {
-            font-size: 20px;
-            font-weight: bold;
-            
-        }
-    </style>  
+    label {
+      display: block;
+      margin-bottom: 5px;
+      font-weight: bold;
+      color: #8b2f5a;
+    }
+
+    input,
+    select,
+    textarea {
+      width: 100%;
+      padding: 10px;
+      border: none;
+      border-radius: 10px;
+      background-color: #fff8f0;
+      margin-bottom: 15px;
+    }
+
+    select option:disabled {
+      background-color: #ffcccc;
+      color: #990000;
+      font-weight: bold;
+    }
+
+    .facility-row-container {
+      display: flex;
+      align-items: flex-start;
+      margin-bottom: 15px;
+      gap: 10px;
+    }
+
+    .facility-row-container>label {
+      flex: 0 0 160px;
+      padding-top: 10px;
+      margin-bottom: 0;
+    }
+
+    .facility-checkbox-group {
+      display: flex;
+      flex: 1;
+      flex-wrap: nowrap;
+      overflow-x: auto;
+      gap: 10px;
+      padding: 10px;
+      border: 1px solid #d8a0a8;
+      border-radius: 10px;
+      background-color: #fff8f0;
+      margin-bottom: 0;
+      -webkit-overflow-scrolling: touch;
+      padding-bottom: 12px;
+    }
+
+    .facility-checkbox-group .checkbox-item {
+      flex-shrink: 0;
+      min-width: fit-content;
+      padding: 8px 12px;
+      border: 1px solid #e0e0e0;
+      border-radius: 8px;
+      background-color: #ffffff;
+      transition: background-color 0.2s, border-color 0.2s;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 14px;
+      margin: 0;
+    }
+
+    .facility-checkbox-group .checkbox-item:hover {
+      background-color: #ffe0e0;
+      border-color: #8b2f5a;
+    }
+
+    .facility-checkbox-group .checkbox-item input[type="checkbox"] {
+      width: auto;
+      margin-bottom: 0;
+      flex-shrink: 0;
+    }
+
+    .facility-checkbox-group .checkbox-item label {
+      font-weight: normal;
+      display: inline;
+      margin-bottom: 0;
+      color: #333;
+      white-space: nowrap;
+    }
+
+    .facility-checkbox-group .full-status {
+      color: #990000;
+      font-weight: bold;
+      margin-left: auto;
+      font-size: 0.9em;
+    }
+
+    .button-group {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+    }
+
+    button {
+      width: 45%;
+      border: none;
+      padding: 10px;
+      font-size: 16px;
+      border-radius: 10px;
+      background: linear-gradient(135deg,
+          rgba(216, 112, 147, 1),
+          rgba(234, 176, 198, 1));
+      color: white;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    button:hover {
+      box-shadow: 0 3px 8px 0 #0005;
+      background: gray;
+      right: 15px;
+    }
+
+    h4 {
+      text-align: center;
+      color: #3b2f2f;
+      margin-top: 10px;
+    }
+
+    .field {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      margin-bottom: 15px;
+      gap: 10px;
+    }
+
+    .field label {
+      flex: 0 0 160px;
+      font-weight: bold;
+      font-size: 16px;
+      color: #8b2f5a;
+      text-align: left;
+    }
+
+    .field>label:only-child:not([for="arrival_date"]):not([for="departure_date"]) {
+      flex: 0 0 100%;
+      margin-bottom: 0;
+    }
+
+    .field input,
+    .field select,
+    .field textarea {
+      flex: 1;
+      padding: 10px 12px;
+      border: none;
+      border-radius: 10px;
+      font-size: 15px;
+      background-color: #fff8f0;
+      box-shadow: inset 2px 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    textarea {
+      min-height: 60px;
+      resize: vertical;
+    }
+
+    .inline-field {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      margin-bottom: 15px;
+      gap: 10px;
+    }
+
+    .inline-field .field-group {
+      display: flex;
+      flex: 1;
+      align-items: center;
+      gap: 10px;
+      min-width: 45%;
+    }
+
+    .inline-field label {
+      flex: 0 0 auto;
+      font-weight: 600;
+      color: #8b2f5a;
+      text-align: left;
+    }
+
+    .inline-field input[type="date"] {
+      flex: 1 1 150px;
+      padding: 10px;
+      border: none;
+      border-radius: 10px;
+      background-color: #fff8f0;
+      box-shadow: inset 2px 2px 4px rgba(0, 0, 0, 0.1);
+      font-size: 15px;
+    }
+
+    /*Responsive */
+    @media (max-width: 600px) {
+      .hotel-reservation-form {
+        width: 90%;
+        padding: 20px;
+      }
+
+      .field {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .field label {
+        flex: 0 0 100%;
+        margin-bottom: 5px;
+      }
+
+      .field input,
+      .field select,
+      .field textarea {
+        flex: 0 0 100%;
+      }
+
+      .facility-row-container {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .facility-row-container>label {
+        flex: 0 0 100%;
+        margin-bottom: 5px;
+        padding-top: 0;
+      }
+
+      .facility-checkbox-group {
+        flex-wrap: wrap;
+        overflow-x: hidden;
+      }
+
+      .facility-checkbox-group .checkbox-item {
+        min-width: 100%;
+      }
+
+      .inline-field {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .inline-field .field-group {
+        width: 100%;
+        flex: 0 0 100%;
+      }
+
+      .inline-field label,
+      .inline-field input[type="date"] {
+        width: auto;
+      }
+
+      button {
+        width: 100%;
+      }
+
+      .button-group {
+        flex-direction: column;
+      }
+    }
+  </style>
 </head>
 
 <body>
-    <form class="hotel-reservation-form" method="post" action="/reservations">
-        <h1>&nbsp;&nbsp;<i class="fa-sharp fa-solid fa-hotel"></i>&nbsp;&nbsp;Hotel Elite’s Reservation Form</h1>
-        <br>
-        <div class="field">
-            <label> Name:</label>
-            &nbsp;&nbsp;<input id="name" type="text" name="name" placeholder="Your Name" required><br><br>
+  <header>
+    <div class="navbar">
+      <img src="/static/image/logol.jpg" class="logo1" />
+      <div class="mobile">
+        <div class="nav">
+          <div class="bar"><a href="/logout">Logout</a></div>
         </div>
-        <div class="field">
-            <label>Email:</label>
-            &nbsp;&nbsp;<input id="email" type="email" name="email" placeholder="Your Email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" required><br><br>
+      </div>
+    </div>
+  </header>
+  <form class="hotel-reservation-form" method="post" action="/reservations">
+    <h1>
+      <i class="fa-sharp fa-solid fa-hotel"></i>&nbsp;&nbsp;Hotel Elite’s
+      Reservation Form
+    </h1>
+    <br />
+
+    {% if msg %}
+    <div
+      style="text-align: center; color: #990000; font-weight: bold; margin-bottom: 20px; padding: 10px; background: #ffe0e0; border-radius: 10px;">
+      {{ msg }}
+    </div>
+    {% endif %}
+
+    <div style="text-align: center; margin-bottom: 16px;">
+      <a href="/my/reservations" style="color: #8b2f5a; font-weight: bold; text-decoration: none;">
+        My Reservations
+      </a>
+    </div>
+
+    <div class="field">
+      <label for="name">Name:</label>
+      <input type="text" id="name" name="name" placeholder="Your Name"
+        value="{{ user.username if user.username else '' }}" required />
+    </div>
+
+    <div class="field">
+      <label for="email">Email:</label>
+      <input type="email" id="email" name="email" placeholder="Your Email"
+        pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" value="{{ user.email if user.email else '' }}" required />
+    </div>
+
+    <div class="field">
+      <label for="tel">Mobile no:</label>
+      <input type="tel" id="tel" name="telphone" maxlength="10" pattern="[0-9]{10}" placeholder="Mobile number"
+        value="{{ user.mobileno if user.mobileno else '' }}" required />
+    </div>
+
+    <div class="field">
+      <label for="address">Address:</label>
+      <textarea id="address" name="address" required></textarea>
+    </div>
+
+    <div class="field">
+      <label for="room">Room Type:</label>
+      <select name="Room_type" id="room" required>
+        <option value="" disabled selected>-- Select a Room Type --</option>
+        {% for room in rdetails %}
+        <option value="{{ room.name }}" {% if room.is_full %}disabled{% endif %}>
+          {{ room.name }} ({{ room.available_rooms }} Available)
+          {% if room.is_full %}- FULL!{% endif %}
+        </option>
+        {% endfor %}
+      </select>
+    </div>
+
+    <div class="field">
+      <label for="rooms">Number of rooms:</label>
+      <input type="number" id="rooms" name="number_of_rooms" min="1" max="50" placeholder="Input" value="1" required />
+    </div>
+
+    <div class="facility-row-container">
+      <label>Select Facility Slots:</label>
+      <div class="facility-checkbox-group">
+        {% for facility in factdetails %}
+        <div class="checkbox-item">
+          <input type="checkbox" name="facility_name" value="{{ facility.name }}" id="fac-{{ loop.index }}" {% if
+            facility.is_full %}disabled{% endif %} />
+          <label for="fac-{{ loop.index }}">
+            {{ facility.name }}
+            ({{ facility.available_slots }} Slot{% if facility.available_slots != 1 %}s{% endif %} Left)
+          </label>
+          {% if facility.is_full %}<span class="full-status">FULL!</span>{% endif %}
         </div>
-        <div class="field">
-            <label>Mobile no:</label>
-            &nbsp;&nbsp;<input type="tel" name="telphone" maxlength="10" placeholder="Mobile number" required ><br><br>
-        </div>
-        <div class="field">
-            <label>Address:</label>
-            &nbsp;&nbsp;<textarea id="address" name="address" required></textarea><br><br>
-        </div>
-        <div class="field">
-            <label>Room Type:</label>
-            &nbsp;&nbsp;<select name="Room_type">
-                <option value="Superior Room">Superior Room</option>
-                <option value="Deluxe Room">Deluxe Room</option>
-                <option value="Club Room">Club Room</option>
-                <option value="Suites">Suites</option>
-            </select><br><br>
-        </div>
-        <div class="field">
-            <label>Number of rooms:</label>
-            &nbsp;&nbsp;<input name="number_of_rooms" type="number" min="0" max="50" placeholder="input" required><br>
-        </div>
-        <div class="field1">
-            <label>Select other facilities:</label>
-            &nbsp;&nbsp;Unique Dining<input name="other_facilities" type="checkbox">
-            &nbsp;&nbsp;Private theater<input name="other_facilities" type="checkbox">
-            &nbsp;&nbsp;Event Spaces<input name="other_facilities" type="checkbox">
-            &nbsp;&nbsp;Aloka Spa<input name="other_facilities" type="checkbox">
-            &nbsp;&nbsp;Swimming pool<input name="other_facilities" type="checkbox">
-            &nbsp;&nbsp;Cab<input name="other_facilities" type="checkbox"><br><br>
-        </div>
-        <div class="field">
-        <label for="from">Arrival Date</label> 
-        <input type="text" id="arrival_date" name="arrival_date" placeholder="mm/dd/YYYY" required/>&nbsp;&nbsp;&nbsp;&nbsp;
-        <label for="to">Departure Date</label> 
-        <input type="text" id="departure_date" name="departure_date" placeholder="mm/dd/YYYY" required/>
-        </div><br><br>
-        <div class="field">      
-            <button type="submit" value="submit">BOOK NOW&nbsp;&nbsp;<i class="fa-solid fa-ticket"></i></button>&nbsp;&nbsp;&nbsp;&nbsp;
-            <button type="reset" value="reset">Clear&nbsp;&nbsp;<i class="fa-solid fa-trash-arrow-up"></i></button> 
-            <h4>{{msg}}</h4>        
-        </div>
-    </form><br>
-    <button style="left: 100px; " class="button1"><a href="/">Logout &nbsp;&nbsp;<i class="fa-solid fa-right-from-bracket"></i></a></button> 
-    <script type="text/javascript" src="/static/js/script.js"></script> 
+        {% endfor %}
+      </div>
+    </div>
+
+    <div class="inline-field">
+      <div class="field-group">
+        <label for="arrival_date">Arrival Date</label>
+        <input type="date" id="arrival_date" name="arrival_date" required />
+      </div>
+
+      <div class="field-group">
+        <label for="departure_date">Departure Date</label>
+        <input type="date" id="departure_date" name="departure_date" required />
+      </div>
+    </div>
+
+    <div class="button-group">
+      <button type="submit">
+        BOOK NOW&nbsp;&nbsp;<i class="fa-solid fa-ticket"></i>
+      </button>
+      <button type="reset">
+        Clear&nbsp;&nbsp;<i class="fa-solid fa-trash-arrow-up"></i>
+      </button>
+    </div>
+
+  </form>
+  <script type="text/javascript" src="/static/js/script.js"></script>
 </body>
+
 </html>
