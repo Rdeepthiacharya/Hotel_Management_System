@@ -10,24 +10,15 @@ class DBController:
     """
     def __init__(self, db_name):
         self.db_name = db_name
-        # SQLite allows only one writer at a time; serialize writes to avoid "database is locked".
         self._write_lock = threading.Lock()
         self.initialize_db()
 
     def connect(self) -> sqlite3.Connection:
         """Establishes a connection to the database."""
-        # Give SQLite more time to acquire the lock instead of failing immediately.
         conn = sqlite3.connect(self.db_name, timeout=30.0)
         conn.row_factory = sqlite3.Row 
-
-        # Reduce locking/contention issues:
-        # - WAL allows concurrent reads while a write transaction is in progress.
-        # - busy_timeout makes SQLite wait briefly for the lock instead of failing immediately.
         cur = conn.cursor()
-        # Wait for locks briefly before raising "database is locked".
         cur.execute("PRAGMA busy_timeout=15000")
-        # journal_mode=WAL can fail if another connection is currently holding locks.
-        # It's beneficial, but we don't want to crash the whole app if it can't be applied immediately.
         try:
             cur.execute("PRAGMA journal_mode=WAL")
         except sqlite3.OperationalError:
@@ -159,8 +150,6 @@ class DBController:
         
         This method is critical for concurrency control.
         """
-        # Serialize write attempts in-process; this prevents most "database is locked" cases
-        # caused by overlapping requests in multi-threaded execution.
         with self._write_lock:
             for attempt in range(max_retries):
                 conn = None
@@ -183,7 +172,6 @@ class DBController:
                         if conn:
                             conn.rollback()
 
-                        # Exponential backoff; cap to keep the total wait reasonable.
                         wait_time = min(2**attempt * 0.1, 2.0)
                         if attempt < max_retries - 1:
                             print(f"--- DB Locked. Retrying in {wait_time:.2f}s... (Attempt {attempt + 1}/{max_retries})")

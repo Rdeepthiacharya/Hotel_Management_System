@@ -10,7 +10,6 @@ from fastapi.staticfiles import StaticFiles
 from fastapi.security import HTTPBasic
 from starlette.responses import Response
 from dbcontroller import (DBController)
-# Removed: from bcrypt import hashpw, gensalt, checkpw
 from datetime import datetime
 
 # creating a FastAPI object
@@ -41,7 +40,6 @@ def get_user_data(request: Request) -> Dict[str, Any]:
             "SELECT * FROM users WHERE id = ?", [user_id]
         )
         if user_records:
-            # We use dict() conversion as a safeguard, assuming executeQueryWithParams returns Row objects
             user_data = dict(user_records[0])
     return user_data
 
@@ -76,12 +74,10 @@ def get_facility_details() -> List[Dict[str, Any]]:
 
 # --- AUTH HELPERS ---
 def is_user_logged_in(request: Request) -> bool:
-    # User login sets `user_id` in session.
     return bool(request.session.get("isLogin")) and request.session.get("user_id") is not None
 
 
 def is_admin_logged_in(request: Request) -> bool:
-    # Admin login sets `uid` in session.
     return bool(request.session.get("isLogin")) and request.session.get("uid") is not None
 
 
@@ -176,9 +172,8 @@ def do_login(
         return templates.TemplateResponse("login.html", {"request": request, "msg": "Invalid email or Password"})
 
     user = dict(user_records[0])
-    stored_password = str(user.get("password", "")) # Get plain stored password
+    stored_password = str(user.get("password", ""))
 
-    # Authenticate by comparing the provided password with the stored plain password
     if password != stored_password:
         return templates.TemplateResponse("login.html", {"request": request, "msg": "Invalid email or Password"})
     
@@ -200,8 +195,6 @@ def do_signup(request: Request, username: str = Form(...), password: str = Form(
     if existing_user:
         return templates.TemplateResponse("signup.html", {"request": request, "msg": "User with this email already exists. Please login."})
     else:
-        # NOTE: Error handling for mobileno conversion and database insertion has been removed as requested.
-        # If 'mobileno' is not a number, or if the database fails, the application will raise a runtime error.
         
         try:
             mobileno_int = int(mobileno)
@@ -211,7 +204,7 @@ def do_signup(request: Request, username: str = Form(...), password: str = Form(
 
         user = {
             "username": username,
-            "password": password, # Storing password in plain text
+            "password": password,
             "email": email,
             "mobileno": mobileno_int,
         }
@@ -236,7 +229,7 @@ def do_reservation(
     Room_type: Optional[str] = Form(None),
     facility_name: Optional[List[str]] = Form(
         None
-    ),  # Correctly accepts a list of strings
+    ),
     number_of_rooms: int = Form(1),
     arrival_date: str = Form(...),
     departure_date: str = Form(...),
@@ -244,7 +237,6 @@ def do_reservation(
     if not is_user_logged_in(request):
         return RedirectResponse("/login", status_code=status.HTTP_302_FOUND)
 
-    # Fetch data needed for the template in case of failure
     user_data = get_user_data(request)
     rooms_data = get_rooms_details()
     facilities_data = get_facility_details()
@@ -259,44 +251,35 @@ def do_reservation(
         context["msg"] = msg
         return templates.TemplateResponse("reservations.html", context)
 
-    # 1. Input Validation and Date Check
     try:
         arrival_date_dt = datetime.strptime(arrival_date, "%Y-%m-%d")
         departure_date_dt = datetime.strptime(departure_date, "%Y-%m-%d")
     except ValueError:
-        # Essential guardrail for incorrect date string format
         return render_error("Invalid date format.")
 
-    # KEEPING: Departure date must be after arrival date.
     if departure_date_dt <= arrival_date_dt:
         return render_error("Departure date must be after arrival date.")
 
     try:
-        telphone_int = int(telphone)  # Convert for database insertion
+        telphone_int = int(telphone)
     except ValueError:
-        # Final guardrail for non-numeric input for the DB field
         return render_error("Internal error processing telephone number.")
 
-    # --- Clean up and assign variables ---
     final_room_type = Room_type.strip() if Room_type else None
 
-    # Correctly handles the list of selected facilities
     facilities_to_book: List[str] = facility_name if facility_name is not None else []
-    # String for database insertion (e.g., "Pool, Gym, Sauna")
+
     db_facility_string: Optional[str] = (
         ", ".join(facilities_to_book) if facilities_to_book else None
     )
 
-    # --- LOGICAL CHECK: Reservation must include at least one room and a room type ---
     if number_of_rooms <= 0 or not final_room_type:
         return render_error(
             "A reservation must include at least one room and a valid Room Type. Facilities are optional."
         )
 
-    # List to hold all atomic write operations (updates and inserts)
     transaction_list: List[Tuple[str, Union[List[Any], Dict[str, Any]]]] = []
 
-    # --- 1. ROOM CHECK (READ) AND TRANSACTION PREP (WRITE) ---
     if final_room_type:
         print(f"🔍 Checking room availability for: '{final_room_type}'")
         room_result = db.executeQueryWithParams(
@@ -311,7 +294,6 @@ def do_reservation(
         available_rooms = room.get("available_rooms", 0)
 
         if available_rooms >= number_of_rooms:
-            # Prepare the room UPDATE query, but DO NOT execute yet
             room_update_query = "UPDATE rdetails SET available_rooms = available_rooms - ? WHERE LOWER(TRIM(name)) = LOWER(TRIM(?))"
             room_update_params = [number_of_rooms, final_room_type]
             transaction_list.append((room_update_query, room_update_params))
@@ -322,11 +304,9 @@ def do_reservation(
                 f"Only {available_rooms} {final_room_type}(s) available."
             )
 
-    # --- 2. FACILITY CHECK (READ) AND TRANSACTION PREP (WRITE) ---
     if facilities_to_book:
         print(f"🔍 Checking {len(facilities_to_book)} facilities for slots.")
 
-        # Pre-Check: Check all selected facilities for availability
         for fac_name in facilities_to_book:
             fac_result = db.executeQueryWithParams(
                 "SELECT available_slots FROM factdetails WHERE LOWER(TRIM(name)) = LOWER(TRIM(?))",
@@ -344,14 +324,12 @@ def do_reservation(
                 return render_error(
                     f"{fac_name} is fully booked. No booking action taken."
                 )
-            
-            # Prepare the facility UPDATE query, but DO NOT execute yet
+
             fac_update_query = "UPDATE factdetails SET available_slots = available_slots - 1 WHERE LOWER(TRIM(name)) = LOWER(TRIM(?))"
             fac_update_params = [fac_name]
             transaction_list.append((fac_update_query, fac_update_params))
             print(f" Facility update queued: {fac_name} (-1)")
 
-    # --- 3. PREPARE BOOKING INSERT (WRITE) ---
     bdetail = {
         "name": name,
         "email": email,
@@ -359,35 +337,27 @@ def do_reservation(
         "address": address,
         "room_type": final_room_type,
         "number_of_rooms": number_of_rooms,
-        # Use the correct database column name
         "other_facilities": db_facility_string,
         "arrival_date": arrival_date,
         "departure_date": departure_date,
     }
-    
-    # Construct INSERT query using the dictionary keys
+
     columns = ", ".join(bdetail.keys())
     placeholders = ":" + ", :".join(bdetail.keys()) 
     booking_insert_query = f"INSERT INTO bdetails ({columns}) VALUES ({placeholders})"
-    
-    # Append to transaction list (using dictionary parameters)
+
     transaction_list.append((booking_insert_query, bdetail))
 
-    # --- CRITICAL ATOMIC EXECUTION ---
     try:
-        # Execute all queued updates and inserts in a single, atomic transaction
         db.executeTransaction(transaction_list)
         print(" SUCCESS: Transaction complete (Room, Facilities, Booking committed).")
         return render_error("Booking was successful!")
     except Exception as e:
         print(f"!!! CRITICAL TRANSACTION ERROR (Rollback completed): {e}")
-        # The executeTransaction method handles the rollback automatically.
         return render_error(
             f"Booking failed due to a severe database error. All availability changes were rolled back automatically. Error: {e}"
         )
 
-
-# --- USER BOOKING MANAGEMENT ---
 @app.get("/my/reservations", response_class=HTMLResponse)
 def my_reservations(request: Request):
     if not is_user_logged_in(request):
@@ -422,7 +392,6 @@ def cancel_reservation(request: Request, reservation_id: int):
 
     transaction_list: List[Tuple[str, Union[List[Any], Dict[str, Any]]]] = []
 
-    # Restore room availability
     if room_type and number_of_rooms > 0:
         transaction_list.append(
             (
@@ -432,7 +401,6 @@ def cancel_reservation(request: Request, reservation_id: int):
             )
         )
 
-    # Restore facility availability (1 slot per facility per booking)
     for fac_name in facilities:
         transaction_list.append(
             (
@@ -442,7 +410,6 @@ def cancel_reservation(request: Request, reservation_id: int):
             )
         )
 
-    # Delete the booking
     transaction_list.append(("DELETE FROM bdetails WHERE id = ?", [reservation_id]))
 
     db.executeTransaction(transaction_list)
