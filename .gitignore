@@ -2,6 +2,7 @@
 *.db
 *.db-shm
 *.db-wal
+*.sqbpro
 
 # Python cache
 __pycache__/
@@ -11,3 +12,5 @@ __pycache__/
 venv/
 .venv/
 env/
+
+
